@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>青禾社区 · 认知康复看板</title><link rel="icon" href="data:,"><link rel="stylesheet" href="./community.css"><link rel="stylesheet" href="./community-refinement.css"><link rel="stylesheet" href="./community-online.css"><meta name="description" content="青禾社区认知相关表现监测工作台：12周模拟案例、七维趋势、原文证据与词汇分析。"></head>
+<body>
+<a class="skip-link" href="#page-title">跳到主要内容</a>
+<aside class="rail"><a class="brand" href="./"><span class="brand-mark" aria-hidden="true">禾</span><span class="brand-name">青禾社区<small>园艺生活 · 认知关怀</small></span></a><nav aria-label="核心工作区"><a href="#dashboard" data-view="dashboard" aria-current="page"><span aria-hidden="true">概</span>认知康复看板</a><a href="#residents" data-view="residents"><span aria-hidden="true">人</span>居民档案</a><a href="#reports" data-view="reports"><span aria-hidden="true">评</span>阶段报告</a></nav><div class="rail-bottom"><p>七维趋势 · 每周观察 · 日变化</p><span class="small">活动观察分，仅作趋势参考</span></div></aside>
+<main>
+<header class="page-header"><div><p class="breadcrumb">青禾社区 / 社区工作台</p><h1 id="page-title" tabindex="-1">认知康复看板</h1></div><div class="header-context"><a class="button" href="#import">展示版说明</a></div></header>
+<p class="online-banner"><strong>在线课程展示</strong><span>12周模拟资料 · 可交互查看报告与证据 · 不接收真实居民资料</span></p><p id="error" class="error" role="alert" tabindex="-1"></p><p id="notice" class="notice" role="status" aria-live="polite"></p>
+<section data-panel="dashboard"><details class="dashboard-filter-details"><summary>资料范围</summary><form id="dashboard-filters" class="filter-bar"><label>资料类型<select name="dataset"><option value="all">全部资料</option><option value="synthetic">仅模拟资料</option><option value="actual">仅实际导出资料</option></select></label><label>阶段开始<input name="from" type="date"></label><label>阶段结束<input name="to" type="date"></label><button>应用筛选</button><button type="reset">重置</button></form></details><div id="dashboard-content" aria-live="polite"><p class="empty">正在汇集居民阶段资料…</p></div></section>
+
+<section data-panel="residents">
+  <div class="section-heading"><div><h2>居民档案</h2><p>查看居民记录、认知趋势和历史报告。</p></div><a class="button primary" href="#import">导入社区数据</a></div>
+  <div id="resident-empty" class="empty hidden"><h3>先接入一份社区资料</h3><p>支持JSON数据包或多张CSV。也可以载入明确标注的模拟案例，体验完整流程。</p><button class="demo-button">载入模拟资料</button></div>
+  <div id="resident-list" class="resident-list"></div>
+  <section id="resident-profile" class="hidden" aria-label="居民园艺与认知档案"></section>
+  <details id="analysis-panel" class="sheet hidden"><summary>新建阶段分析</summary>
+    <div class="section-heading"><div><p class="small" id="selected-source"></p><h2 id="selected-resident"></h2></div><span id="selected-type" class="badge"></span></div>
+    <p id="source-counts"></p><div class="week-builder"><h3>按周建立观察阶段</h3><p class="small">每7天一个阶段，日变化由原始记录时间展开；不会为无记录日期补分。</p><div class="filter-bar"><label>第一周开始日期<input id="weekly-start" type="date"></label><label>观察周数<select id="weekly-count"><option value="4">4周</option><option value="8">8周</option><option value="12" selected>12周</option><option value="26">26周</option><option value="52">52周</option></select></label><button id="build-weeks">生成每周时间窗口</button></div></div><details class="phase-editor"><summary>核对或调整阶段时间</summary><label for="phase-count">比较阶段</label><select id="phase-count"><option value="3">开始、中期、结束</option><option value="2">开始、结束</option><option value="1">仅观察一个阶段</option><option value="4">4周</option><option value="6">6周</option><option value="8">8周</option><option value="12">12周</option><option value="26">26周</option><option value="52">52周</option></select>
+    <p class="small">时间按北京时间填写。只使用你明确选定的窗口，系统不会自动替换缺失阶段。</p>
+    <div id="phase-fields" class="phase-fields"></div></details>
+    <div class="actions"><button id="analyze" class="primary">生成七维报告</button><span class="small">后台自动分析，人工核对可选</span></div>
+    <div id="run-progress" class="run-progress hidden" role="status" aria-live="polite"><strong id="run-stage"></strong><p id="run-count"></p><ol id="run-steps" class="steps"><li>检查数据</li><li>整理事件</li><li>提取信息</li><li>核对依据</li><li>比较阶段</li><li>报告完成</li></ol><p id="run-issues"></p><button id="retry" class="hidden">重试未完成部分</button></div>
+  </details>
+</section>
+
+
+
+
+
+
+<section data-panel="import" class="hidden"><section class="sheet online-intro"><h2>青禾社区 · 在线课程展示版</h2><p>本站使用明确标注的12周模拟案例。可以查看居民档案、切换周/日趋势、打开评分证据、阅读已完成的词汇分析，并打印和导出报告。</p><p>此版本不接收真实居民资料，不提供新的模型分析或在线人工纠正。新资料导入与分析需另行部署后台服务。</p><button class="primary" data-weekly-demo>查看12周模拟报告</button></section>
+  <div class="section-heading"><div><h2>接入已有社区记录</h2><p>一次数据包应包含本次比较需要的完整历史依据。历史信息可以早于所选阶段。</p></div></div>
+  <div class="sheet"><label for="files">选择JSON，或选择居民、文字、依据、操作CSV</label><input id="files" type="file" accept=".json,.csv" multiple><p class="small">总请求最多6MB；CSV嵌套的slots和conditions用JSON单元格。未知时间请留空。</p>
+    <div class="toolbar"><button data-weekly-demo>打开12周模拟案例</button><button class="demo-button">载入模拟资料</button><a id="download-json" href="/api/community/demo" download="青禾-模拟资料模板.json">JSON模拟模板</a><a href="/api/community/demo.csv">CSV模拟模板</a></div>
+    <div id="csv-mapping"></div>
+    <div id="csv-type" class="hidden"><label for="dataset-type">CSV资料类型</label><select id="dataset-type"><option value="user_import_unverified">实际导出资料（来源待核验）</option><option value="synthetic">模拟资料</option></select></div>
+    <div class="actions"><button id="preview" disabled>检查字段与身份映射</button><button id="save-import" class="primary" disabled>保存并进入阶段分析</button></div>
+    <div id="import-preview" class="preview hidden"></div>
+  </div>
+</section>
+
+<section data-panel="reports" class="hidden">
+  
+  <details id="report-history"><summary id="history-title">选择历史报告</summary><div id="report-list" class="report-list"></div></details>
+  <article id="report" class="hidden" aria-label="七维趋势参考报告"></article>
+</section>
+
+
+<footer>青禾社区 · 认知康复趋势观察<span>活动观察分，仅作趋势参考；缺失数据不记为零。</span></footer>
+</main>
+<dialog id="evidence-drawer" aria-labelledby="drawer-title"><header><div><p class="small">原始资料与核对过程</p><h2 id="drawer-title">证据明细</h2></div><button id="drawer-close" aria-label="关闭证据明细">关闭</button></header><div id="drawer-body"></div><p id="drawer-error" class="error" role="alert"></p></dialog>
+<script type="module" src="./community.js"></script></body></html>
