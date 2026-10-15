@@ -1,12 +1,13 @@
 <!doctype html>
-<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>青禾社区 · 认知康复看板</title><link rel="icon" href="data:,"><link rel="stylesheet" href="./community.css"><link rel="stylesheet" href="./community-refinement.css"><link rel="stylesheet" href="./community-elder.css?v=course-cases-3"><link rel="stylesheet" href="./community-online.css"><meta name="description" content="青禾社区认知相关表现监测工作台：12周模拟案例、七维趋势、原文证据与词汇分析。"></head>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>青禾社区 · 认知康复监测</title><link rel="icon" href="data:,"><link rel="stylesheet" href="./community.css"><link rel="stylesheet" href="./community-refinement.css"><link rel="stylesheet" href="./community-elder.css?v=dual-cognition-4"><link rel="stylesheet" href="./community-online.css"><meta name="description" content="青禾社区认知相关表现监测工作台：12周模拟案例、七维趋势、原文证据与词汇分析。"></head>
 <body>
 <a class="skip-link" href="#page-title">跳到主要内容</a>
-<aside class="rail"><a class="brand" href="./"><span class="brand-mark" aria-hidden="true">禾</span><span class="brand-name">青禾社区<small>园艺生活 · 认知关怀</small></span></a><nav aria-label="核心工作区"><a href="#dashboard" data-view="dashboard" aria-current="page"><span aria-hidden="true">概</span>认知康复看板</a><a href="#residents" data-view="residents"><span aria-hidden="true">人</span>居民档案</a><a href="#assessments" data-view="assessments"><span aria-hidden="true">测</span>首次测评</a><a href="#reports" data-view="reports"><span aria-hidden="true">评</span>阶段报告</a></nav><div class="rail-bottom"><p>七维趋势 · 每周观察 · 日变化</p><span class="small">活动观察分，仅作趋势参考</span></div></aside>
+<aside class="rail"><a class="brand" href="./"><span class="brand-mark" aria-hidden="true">禾</span><span class="brand-name">青禾社区<small>园艺生活 · 认知关怀</small></span></a><nav aria-label="核心工作区"><a href="#dashboard" data-view="dashboard" aria-current="page"><span aria-hidden="true">概</span>认知康复监测</a><a href="#cognition" data-view="cognition"><span aria-hidden="true">知</span>认知水平评估</a><a href="#residents" data-view="residents"><span aria-hidden="true">人</span>居民档案</a><a href="#assessments" data-view="assessments"><span aria-hidden="true">测</span>测评记录</a><a href="#reports" data-view="reports"><span aria-hidden="true">评</span>监测报告</a></nav><div class="rail-bottom"><p>七维趋势 · 每周观察 · 日变化</p><span class="small">活动观察分，仅作趋势参考</span></div></aside>
 <main>
-<header class="page-header"><div><p class="breadcrumb">青禾社区 / 社区工作台</p><h1 id="page-title" tabindex="-1">认知康复看板</h1></div><div class="header-context"><a class="button" href="#import">展示版说明</a></div></header>
+<header class="page-header"><div><p class="breadcrumb">青禾社区 / 社区工作台</p><h1 id="page-title" tabindex="-1">认知康复监测</h1></div><div class="header-context"><a class="button" href="#import">展示版说明</a></div></header>
 <p class="online-banner"><strong>在线课程展示</strong><span>首次测评：浏览器本机接入 · 活动趋势：12周模拟资料 · 尚未连接云端数据服务</span></p><p id="error" class="error" role="alert" tabindex="-1"></p><p id="notice" class="notice" role="status" aria-live="polite"></p>
-<section data-panel="dashboard"><div id="elder-task-dashboard"></div><div id="elder-summary"></div><details id="behavior-trends" class="behavior-trends"><summary>园艺活动相关表现 · 七维阶段观察</summary><details class="dashboard-filter-details"><summary>资料范围</summary><form id="dashboard-filters" class="filter-bar"><label>资料类型<select name="dataset"><option value="all">全部资料</option><option value="synthetic">仅模拟资料</option><option value="actual">仅实际导出资料</option></select></label><label>阶段开始<input name="from" type="date"></label><label>阶段结束<input name="to" type="date"></label><button>应用筛选</button><button type="reset">重置</button></form></details><div id="dashboard-content" aria-live="polite"><p class="empty">正在汇集居民阶段资料…</p></div></details></section>
+<section data-panel="dashboard"><div class="monitor-intro"><div><h2>园艺活动中的认知康复监测</h2><p>保留植物记录、活动、交换、求助与互动资料，比较七维表现的周／日变化。</p></div><a class="button" href="#cognition">查看认知水平评估</a></div><details class="dashboard-filter-details"><summary>资料范围</summary><form id="dashboard-filters" class="filter-bar"><label>资料类型<select name="dataset"><option value="all">全部资料</option><option value="synthetic">仅模拟资料</option><option value="actual">仅实际导出资料</option></select></label><label>阶段开始<input name="from" type="date"></label><label>阶段结束<input name="to" type="date"></label><button>应用筛选</button><button type="reset">重置</button></form></details><div id="dashboard-content" aria-live="polite"><p class="empty">正在汇集居民阶段资料…</p></div></section>
+<section data-panel="cognition" class="hidden"><div class="monitor-intro"><div><h2>九项测评与认知水平参考</h2><p>查看单次任务成绩、历次测评及课程模拟分类，与日常活动康复监测分别呈现。</p></div><a class="button" href="#dashboard">返回康复监测</a></div><div id="elder-task-dashboard"></div><div id="elder-summary"></div></section>
 
 <section data-panel="residents">
   <div class="section-heading"><div><h2>居民档案</h2><p>查看居民记录、认知趋势和历史报告。</p></div><a class="button primary" href="#import">导入社区数据</a></div>
@@ -39,7 +40,7 @@
   </div>
 </section>
 
-<section data-panel="assessments" class="hidden"><div class="section-heading"><div><h2>老人端测评结果</h2><p>首次任务测评、逐题依据与历次同任务变化。</p></div></div><div id="elder-content"></div></section>
+<section data-panel="assessments" class="hidden"><div class="section-heading"><div><h2>认知水平测评记录</h2><p>九项任务的逐题依据、历次记录与导出。</p></div></div><div id="elder-content"></div></section>
 <section data-panel="reports" class="hidden">
   
   <details id="report-history"><summary id="history-title">选择历史报告</summary><div id="report-list" class="report-list"></div></details>
@@ -50,4 +51,4 @@
 <footer>青禾社区 · 认知康复趋势观察<span>活动观察分，仅作趋势参考；缺失数据不记为零。</span></footer>
 </main>
 <dialog id="evidence-drawer" aria-labelledby="drawer-title"><header><div><p class="small">原始资料与核对过程</p><h2 id="drawer-title">证据明细</h2></div><button id="drawer-close" aria-label="关闭证据明细">关闭</button></header><div id="drawer-body"></div><p id="drawer-error" class="error" role="alert"></p></dialog>
-<script type="module" src="./community.js?v=course-cases-3"></script></body></html>
+<script type="module" src="./community.js?v=dual-cognition-4"></script></body></html>
