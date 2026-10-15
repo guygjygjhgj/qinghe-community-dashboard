@@ -1,1 +1,1 @@
-{"mode":"synthetic-read-only","reportId":"0f1c6189-ec32-4e3b-be6d-158a192b3746","residentId":"demo-qinghe-weekly-12","clinicalDiagnosis":null,"includesUserImports":false,"includesModelWeights":false,"includesCredentials":false,"evidenceItems":1152,"phases":12}
+{"mode":"synthetic-read-only","reportId":"0f1c6189-ec32-4e3b-be6d-158a192b3746","residentId":"demo-qinghe-weekly-12","clinicalDiagnosis":null,"courseDemoCases":3,"courseDemoAssessments":9,"includesUserImports":false,"includesModelWeights":false,"includesCredentials":false,"evidenceItems":1152,"phases":12}
