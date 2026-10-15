@@ -1,9 +1,10 @@
+import {monitoringRequested,monitorRequest} from './community-monitor-live.js';
 const base=new URL('./',import.meta.url),cache=new Map();
 async function load(file){if(!cache.has(file))cache.set(file,fetch(new URL(file,base)).then(async r=>{if(!r.ok)throw Error('展示资料未能载入，请刷新重试');return r.json();}).catch(err=>{cache.delete(file);throw err;}));return cache.get(file);}
 const meta=()=>load('data/workspace.json');
 const readOnly=()=>{throw Error('线上展示版不提交或分析新资料。当前可浏览12周模拟报告、原始证据及已完成的词汇分析。');};
 export async function onlineApi(route,body){
- const u=new URL(route,base),p=u.pathname,m=await meta(),id=m.defaultReport;
+ const u=new URL(route,base),p=u.pathname;if(monitoringRequested())return monitorRequest(p+u.search,body);const m=await meta(),id=m.defaultReport;
  if(body!==undefined){if(p==='/api/community/demo/weekly')return {reportId:id,reused:true};return readOnly();}
  if(p==='/api/community/imports')return {imports:[structuredClone(m.import)],livePlatformConnected:false};
  if(p==='/api/community/imports/'+m.import.id)return structuredClone(m.import);
@@ -32,6 +33,7 @@ function filteredOverview(m,params){
  return data;
 }
 async function downloadApi(href){
+ if(monitoringRequested()){const data=await monitorRequest(href),blob=new Blob([data.download??JSON.stringify(data,null,2)],{type:data.type||'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=data.name||'青禾-真实监测报告.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),10000);return;}
  const u=new URL(href,base),m=await meta(),id=m.defaultReport;let file,name;
  if(u.pathname===`/api/community/reports/${id}/export`){const format=u.searchParams.get('format');if(['csv','daily','evidence'].includes(format)){file=`data/${id}/${format}.csv`;name=`青禾-模拟-${format}.csv`;}else{file=`data/${id}/report.json`;name='青禾-模拟认知趋势报告.json';}}
  else if(u.pathname===`/api/community/reports/${id}/lexical`){file=`data/${id}/lexical.json`;name='青禾-模拟词汇分析.json';}
@@ -39,4 +41,4 @@ async function downloadApi(href){
  const r=await fetch(new URL(file,base));if(!r.ok)throw Error('下载资料未能载入');const url=URL.createObjectURL(await r.blob()),a=document.createElement('a');a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),10000);
 }
 document.addEventListener('click',event=>{const a=event.target.closest('a[href^="/api/community/"]');if(!a)return;event.preventDefault();event.stopImmediatePropagation();downloadApi(a.getAttribute('href')).catch(err=>{document.querySelector('#error').textContent=err.message;});},true);
-const url=new URL(location.href);if(!url.searchParams.has('report')){const m=await meta();url.searchParams.set('report',m.defaultReport);if(!url.hash)url.hash='dashboard';history.replaceState(null,'',url);}
+const url=new URL(location.href);if(!url.searchParams.has('report')&&!monitoringRequested()){const m=await meta();url.searchParams.set('report',m.defaultReport);if(!url.hash)url.hash='dashboard';history.replaceState(null,'',url);}

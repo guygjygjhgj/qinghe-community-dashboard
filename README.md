@@ -2,7 +2,9 @@
 
 GitHub Pages 发布包含12周模拟活动案例与三类课程模拟测评病例。
 
-新增老人端首登九项测评接入：同源、同浏览器读取 `qinghe-community-v1` 中按居民编号保存的测评；跨设备可导出/导入 `qinghe-cognitive-transfer/v1` JSON。导入仅保存于当前浏览器，不上传GitHub，没有跨设备云同步。请导出备份，清除网站数据会丢失本机记录。
+真实监测入口：https://qinghe-registration-review.hebaixuan01111123.chatgpt.site/monitor （仅网站所有者可访问）。老人端已登录账号的九项测评和使用事件通过共享D1数据库传输；私聊正文不显示于社区后台；公开仓库只包含模拟资料。原Node/Python语义和LTP模型未托管，缺失结果保持未测，不生成诊断。
+
+保留旧版老人端首登九项测评接入：同源、同浏览器读取 `qinghe-community-v1` 中按居民编号保存的测评；跨设备可导出/导入 `qinghe-cognitive-transfer/v1` JSON。导入仅保存于当前浏览器，不上传GitHub，没有跨设备云同步。请导出备份，清除网站数据会丢失本机记录。
 
 支持九项任务成绩、逐题记录、时间与辅助、七维覆盖说明、历次同任务对比、JSON/CSV导出和打印。旧版完成标记不反推成绩；居民身份按编号而非姓名关联。
 
