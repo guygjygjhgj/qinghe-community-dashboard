@@ -8,7 +8,7 @@ import {initWorkspace} from './community-workspace.js';
 import {drawReportVisuals} from './community-visuals.js';
 import {weekPhases,reportSeries,chinaDay} from './community-series.js';
 import {reportOverview,reportTrendControls,measurementBreakdown} from './community-report-ui.js';
-import {initElderConnection} from './community-elder.js';
+import {initElderConnection} from './community-elder.js?v=task-dashboard-2';
 let workspace;
 history.scrollRestoration='manual';
 const $=s=>document.querySelector(s),escape=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
