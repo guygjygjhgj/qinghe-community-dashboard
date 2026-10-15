@@ -8,12 +8,13 @@ import {initWorkspace} from './community-workspace.js';
 import {drawReportVisuals} from './community-visuals.js';
 import {weekPhases,reportSeries,chinaDay} from './community-series.js';
 import {reportOverview,reportTrendControls,measurementBreakdown} from './community-report-ui.js';
+import {initElderConnection} from './community-elder.js';
 let workspace;
 history.scrollRestoration='manual';
 const $=s=>document.querySelector(s),escape=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const state={imports:[],importId:null,residentId:null,files:[],raw:null,preview:null,phases:null,phaseDrafts:new Map(),chartCadence:'phase',chartWindow:'all',detailDomain:null,chartCache:new Map(),report:null,runId:null,poll:null,busy:false};
 const statuses={consistent:'与依据一致',conflict:'与依据不一致',unresolved:'不可判定',excluded:'已排除'};
-const titles={dashboard:'认知康复看板',residents:'居民档案',import:'导入数据',reports:'阶段报告'};
+const titles={dashboard:'认知康复看板',residents:'居民档案',import:'导入数据',reports:'阶段报告',assessments:'老人端首次测评'};
 const fmt=n=>Number.isFinite(n)?n.toFixed(1):'—';
 const date=v=>v?new Date(v).toLocaleString('zh-CN',{hour12:false,timeZone:'Asia/Shanghai'}):'时间未知';
 function error(e){$('#error').textContent=e?.message||String(e);$('#error').focus();}
@@ -90,4 +91,5 @@ $('#drawer-body').addEventListener('submit',async e=>{const form=e.target.closes
 async function init(){try{show(location.hash.slice(1));await loadImports();const id=new URL(location.href).searchParams.get('report');if(id){const requested=location.hash.slice(1);await openReport(id);if(!requested||requested==='reports'){location.hash='reports';show('reports');}else show(requested);}else if(state.imports.length){const j=state.imports[0];selectResident(j.id,j.residents[0].id);}}catch(e){error(e);}}
 document.addEventListener('click',event=>{if(event.target.closest('#profile-analyze'))$('#analysis-panel').open=true;});
 workspace=initWorkspace({api,escape,date,openReport,selectResident,drawCharts,loadImports,showEvidence:(report,...args)=>{if(state.report?.id!==report.id){state.report=report;renderReport();}openEvidence(...args);}});
+initElderConnection();
 init();
