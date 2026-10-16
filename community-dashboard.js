@@ -1,3 +1,5 @@
+import {monitorCognitiveStatus} from './community-cognitive-cases.js';
+import {readConnectedResidents} from './community-elder-data.js';
 import {trendMeaning} from './community-inspection.js';
 import {reportSeries,chinaDay} from './community-series.js';
 import {reportVisuals,drawReportVisuals} from './community-visuals.js';
@@ -27,13 +29,21 @@ export function createDashboard({api,escape:e,date,onEvidence,onReport,onResiden
     if(!p?.latestReport){report=null;return;}
     try{if(!cache.has(p.latestReport.id))cache.set(p.latestReport.id,await api('/api/community/reports/'+p.latestReport.id));if(seq!==generation)return;report=cache.get(p.latestReport.id);document.querySelector('#dash-open-report').disabled=false;renderReportPanel();}catch(err){if(seq===generation)document.querySelector('#dash-analysis').innerHTML=`<div class="empty"><h3>图表暂未载入</h3><p>${e(err.message)}</p><button id="dash-retry">重新载入</button></div>`;}
   }
+  function paintCognitiveStatus(){
+    const slot=root()?.querySelector('#dash-cognitive-status');if(!slot||!report)return;
+    let residents=[];try{residents=readConnectedResidents(localStorage).residents;}catch{}
+    const status=monitorCognitiveStatus(report.resident,{synthetic:report.synthetic,residents}),url=new URL(location.href);
+    if(status.sourceResidentId){url.hash='cognition';url.searchParams.set('elder',status.sourceResidentId);url.searchParams.set('assessment',status.assessmentId);if(status.caseKey==='actual')url.searchParams.delete('case');else url.searchParams.set('case',status.caseKey);}else url.hash='assessments';
+    slot.dataset.status=status.status;
+    slot.innerHTML=`<span class="cognitive-level-label">现有认知水平</span><strong class="cognitive-level-value">${e(status.label)}</strong><span class="cognitive-level-note">${e(status.note)}</span>${status.completedAt?`<time datetime="${e(status.completedAt)}">测评 ${chinaDay(status.completedAt)}</time>`:''}<a href="${e(url.href)}">${status.sourceResidentId?'查看九项评估':'接入测评'}</a>`;
+  }
   function renderReportPanel(){
     const snap=dashboardSnapshot(report),c=directionCounts(report);
     if(lastReportId!==report.id){domainKey=snap.priority.domain.key;lastReportId=report.id;}
     const d=report.domains.find(d=>d.key===domainKey)||report.domains[0];domainKey=d.key;
     document.querySelector('#dash-analysis').innerHTML=`
       <section class="resident-snapshot" aria-label="居民基础认知信息">
-        <div class="snapshot-person"><span class="snapshot-avatar" aria-hidden="true">${e(report.resident.name.slice(0,1))}</span><div><h2>${e(report.resident.name)} ${badge(report.synthetic)}</h2><p class="snapshot-demographics">${snap.age!=='未记录'?'年龄 '+e(snap.age)+' · ':''}${snap.education!=='未记录'?e(snap.education):'基础档案待完善'} <a href="#residents">居民档案</a></p></div></div>
+        <div class="snapshot-person"><span class="snapshot-avatar" aria-hidden="true">${e(report.resident.name.slice(0,1))}</span><div><h2>${e(report.resident.name)} ${badge(report.synthetic)} <a class="snapshot-profile-link" href="#residents">居民档案</a></h2><div id="dash-cognitive-status" class="snapshot-cognitive-level" aria-label="现有认知水平与九项测评依据"></div>${snap.age!=='未记录'||snap.education!=='未记录'?`<p class="snapshot-demographics">${snap.age!=='未记录'?'年龄 '+e(snap.age):''}${snap.education!=='未记录'?' · '+e(snap.education):''}</p>`:''}</div></div>
         <div class="snapshot-window"><span>观察周期 · ${report.phases.length}${snap.weekly?'周':'个阶段'}</span><strong>${chinaDay(report.phases[0].startedAt)} — ${chinaDay(report.phases.at(-1).endedAt)}</strong><small>基线：${e(report.phases[0].label)}的活动记录</small></div>
         <img class="snapshot-mascot" src="./community-assets/mascot.png" alt="" aria-hidden="true" width="48" height="64">
       </section>
@@ -52,7 +62,7 @@ export function createDashboard({api,escape:e,date,onEvidence,onReport,onResiden
     comparison.classList.add('baseline-comparison');comparison.querySelector('h3').textContent='七维基线与当前表现';
     root().querySelector('.dash-current-profile').append(comparison);
 
-    root().dataset.cadence=cadence;draw();
+    paintCognitiveStatus();root().dataset.cadence=cadence;draw();
   }
 
   function drawTrend(){
@@ -83,5 +93,8 @@ export function createDashboard({api,escape:e,date,onEvidence,onReport,onResiden
   root().addEventListener('change',event=>{if(event.target.id==='dash-resident'){residentId=event.target.value;cadence='phase';update(data);}});
   root().addEventListener('click',event=>{const b=event.target.closest('button');if(!b)return;if(b.dataset.dashExplain)onEvidence(report,b.dataset.dashExplain);if(b.dataset.dashInspect)onEvidence(report,null,null,null,null,{scope:b.dataset.dashInspect});if(b.dataset.dashStatus)onEvidence(report,null,null,null,null,{status:b.dataset.dashStatus});if(b.dataset.dashDomain){domainKey=b.dataset.dashDomain;root().querySelectorAll('.domain-choice').forEach(x=>x.dataset.selected=x.querySelector('[data-dash-domain]').dataset.dashDomain===domainKey);root().querySelectorAll('[data-dash-domain]').forEach(x=>x.setAttribute('aria-pressed',x.dataset.dashDomain===domainKey));draw();}if(b.dataset.dashCadence){cadence=b.dataset.dashCadence;root().dataset.cadence=cadence;root().querySelectorAll('[data-dash-cadence]').forEach(x=>x.setAttribute('aria-pressed',x===b));draw();}if(b.dataset.dashResident){residentId=b.dataset.dashResident;cadence='phase';update(data);}if((b.id==='dash-open-report'||b.hasAttribute('data-dash-report'))&&report)onReport(report.id);if(b.id==='dash-retry')update(data);});
   root().addEventListener('toggle',event=>{if(event.target.open)requestAnimationFrame(draw);},true);
+  window.addEventListener('storage',paintCognitiveStatus);
+  document.addEventListener('qinghe-assessment-updated',paintCognitiveStatus);
+  document.addEventListener('qinghe-monitor-updated',paintCognitiveStatus);
   window.addEventListener('resize',draw);document.fonts.ready.then(draw);return {update,draw,openCurrentReport:()=>report?onReport(report.id):Promise.resolve()};
 }

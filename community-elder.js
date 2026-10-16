@@ -1,27 +1,30 @@
 import {TASKS,taskScore,domainCoverage} from './community-elder-schema.js';
 import {TRANSFER_KEY,readConnectedResidents,importAssessmentPackage,prepareStandalone} from './community-elder-data.js?v=dual-cognition-4';
 import {taskOverview,taskObservation} from './community-task-overview.js';
-import {COURSE_CASE_OPTIONS,courseCases,isCourseCase,assessmentExport,assessmentCsv} from './community-cognitive-cases.js';
+import {COURSE_CASE_OPTIONS,courseCases,monitoringCourseCase,isCourseCase,assessmentExport,assessmentCsv} from './community-cognitive-cases.js';
 const e=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const dt=v=>v?new Date(v).toLocaleString('zh-CN',{hour12:false}):'未记录';
 const pct=v=>v===null?'—':v.toFixed(1)+'%';
 const duration=v=>Number.isFinite(v)?(v/1000).toFixed(1)+'秒':'未记录';
 const download=(value,name,type='application/json')=>{const url=URL.createObjectURL(new Blob([type==='application/json'?JSON.stringify(value,null,2):value],{type:type+';charset=utf-8'})),a=document.createElement('a');a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);};
 export function initElderConnection(){
- let data={residents:[],issues:[]},residentId=new URL(location.href).searchParams.get('elder'),assessmentId=null;
- const examples=courseCases(),requestedCase=new URL(location.href).searchParams.get('case'),caseAssessments=new Map();
+ let data={residents:[],issues:[]},residentId=new URL(location.href).searchParams.get('elder'),assessmentId=new URL(location.href).searchParams.get('assessment');
+ const examples=[...courseCases(),monitoringCourseCase()],requestedCase=new URL(location.href).searchParams.get('case'),caseAssessments=new Map();
  let caseId=examples.some(r=>r.caseKey===requestedCase)?requestedCase:'actual';
+ if(caseId!=='actual'&&assessmentId)caseAssessments.set(caseId,assessmentId);
  const panel=document.querySelector('#elder-content'),summary=document.querySelector('#elder-summary');if(!panel||!summary)return;
  const current=()=>{const resident=caseId==='actual'?data.residents.find(r=>r.id===residentId):examples.find(r=>r.caseKey===caseId),selected=caseId==='actual'?assessmentId:caseAssessments.get(caseId),assessment=resident?.assessments.find(a=>a.assessmentId===selected)||resident?.assessments.at(-1);return {resident,assessment};};
  const activeResidents=()=>caseId==='actual'?data.residents:examples.filter(r=>r.caseKey===caseId);
- const selector=()=>`<section class="course-case-bar" aria-label="课程案例选择"><div><strong>案例选择</strong><p>真实记录与课程模拟分别查看</p></div><label>展示内容<select data-course-case aria-label="案例选择"><option value="actual" ${caseId==='actual'?'selected':''}>真实记录（本机）</option>${COURSE_CASE_OPTIONS.map(([key,label])=>`<option value="${key}" ${caseId===key?'selected':''}>${label}</option>`).join('')}</select></label></section>`;
+ const selector=()=>`<section class="course-case-bar" aria-label="课程案例选择"><div><strong>案例选择</strong><p>真实记录与课程模拟分别查看</p></div><label>展示内容<select data-course-case aria-label="案例选择"><option value="actual" ${caseId==='actual'?'selected':''}>真实记录（本机）</option>${[...COURSE_CASE_OPTIONS,...(caseId==='monitor'?[['monitor','李阿姨（12周模拟）']]:[])].map(([key,label])=>`<option value="${key}" ${caseId===key?'selected':''}>${label}</option>`).join('')}</select></label></section>`;
  const demoBanner=r=>!isCourseCase(r)?'':`<section class="course-result" data-course-conclusion="${r.caseKey}" aria-label="课程模拟结果"><div><span class="course-stamp">课程模拟结果</span><h2>${e(r.demoConclusion)}</h2><p>${e(r.name)} · ${e(r.description)}</p><small>分类为预设病例设定；成绩来自模拟作答，不代表真实老人诊断。</small></div><div class="course-result-actions"><button data-elder-export>导出模拟 JSON</button><button data-elder-csv>导出模拟 CSV</button><button data-elder-print>打印模拟报告</button></div></section>`;
  const coverageBlock=a=>`<section class="course-coverage"><h3>七维材料覆盖</h3><div class="elder-domain-grid">${domainCoverage(a).map(d=>`<section><strong>${e(d.label)}</strong>${d.tasks.length?d.tasks.map(t=>`<p><button class="number-link" data-elder-task="${t.index}">${e(t.name)} ${pct(t.score)}</button></p>`).join(''):'<p>未覆盖 · 不补分</p>'}${d.note?`<small>${e(d.note)}</small>`:''}</section>`).join('')}</div><p class="small">研究背景参考 <a href="https://doi.org/10.1136/gpsych-2022-100837" target="_blank" rel="noopener">TCSA 原始研究</a>；本页改编任务和模拟分类不套用其原版分数或阈值。</p></section>`;
  function setCase(value){caseId=examples.some(r=>r.caseKey===value)?value:'actual';const url=new URL(location.href);if(caseId==='actual')url.searchParams.delete('case');else url.searchParams.set('case',caseId);window.history.replaceState(null,'',url);document.querySelector('#evidence-drawer')?.close?.();document.querySelector('#drawer-body').innerHTML='';document.querySelector('#drawer-title').textContent='证据明细';document.querySelector('#error').textContent='';document.querySelector('#notice').textContent='';refresh();trend();}
  function refresh(){
   try{data=readConnectedResidents(localStorage);}catch(err){data={residents:[],assessmentCount:0,issues:[err.message]};}
+  document.dispatchEvent(new window.CustomEvent('qinghe-assessment-updated'));
   if(!data.residents.some(r=>r.id===residentId))residentId=data.residents[0]?.id||null;
   const {resident,assessment}=current();if(caseId==='actual')assessmentId=assessment?.assessmentId||null;
+  if(['#cognition','#assessments'].includes(location.hash)){const url=new URL(location.href);if(resident){url.searchParams.set('elder',resident.id);if(assessment)url.searchParams.set('assessment',assessment.assessmentId);else url.searchParams.delete('assessment');}else{url.searchParams.delete('elder');url.searchParams.delete('assessment');}if(caseId==='actual')url.searchParams.delete('case');else url.searchParams.set('case',caseId);window.history.replaceState(null,'',url);}
   const dashboard=document.querySelector('#elder-task-dashboard');if(dashboard)dashboard.innerHTML=selector()+demoBanner(resident)+taskOverview(activeResidents(),resident,assessment)+(isCourseCase(resident)?'<details class="task-coverage-fold"><summary>七维材料覆盖与研究依据</summary>'+coverageBlock(assessment)+'</details>':'');
   summary.innerHTML=`<section class="elder-connection-summary"><div><span class="elder-connection-dot" aria-hidden="true"></span><strong>老人端首次测评</strong><p>${data.assessmentCount?`${data.residents.length}位居民 · ${data.assessmentCount}份测评记录已接入`:'等待接入 · 旧版只保留完成标记，无法恢复已丢失成绩'}</p></div><div class="elder-summary-actions"><a class="button ${data.assessmentCount?'primary':''}" href="#assessments">${data.assessmentCount?'查看测评结果':'接入测评记录'}</a><a href="https://guygjygjhgj.github.io/qinghe-community-web/?assessment=start#/" target="_blank" rel="noopener">打开老人端测评</a></div></section>`;
   if(isCourseCase(resident))summary.innerHTML='<p class="course-context-note">当前正在查看课程模拟病例，三个时间点的作答均为合成资料。真实居民资料保持独立。</p>';

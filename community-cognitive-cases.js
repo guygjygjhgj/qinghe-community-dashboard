@@ -38,7 +38,19 @@ function assessment(key,stage){
  return normalizeAssessment({assessmentId:`course-${key}-202610-${day}`,prototype:'QH-DEMO-1.0',startedAt:new Date(start).toISOString(),completedAt:new Date(start+elapsed).toISOString(),referenceLocalDate:`2026-10-${day}`,tourMode:false,activeMs,pauseCount:0,hiddenCount:0,sound:false,tasks});
 }
 export function courseCases(){return COURSE_CASE_OPTIONS.map(([key,,demoConclusion])=>({caseKey:key,id:'course-demo:'+key,sourceUserId:'course-demo-'+key,name:profiles[key].name,age:null,education:null,datasetType:'synthetic',demoConclusion,description:profiles[key].description,sources:['课程模拟资料'],assessments:[0,1,2].map(stage=>assessment(key,stage))}));}
-export function isCourseCase(resident){return resident?.datasetType==='synthetic'&&COURSE_CASE_OPTIONS.some(([key,,label])=>resident.id==='course-demo:'+key&&resident.demoConclusion===label);}
+export const MONITOR_DEMO_ID='demo-qinghe-weekly-12';
+// A separate, explicitly synthetic assessment identity for the existing monitoring demo.
+// Reusing a question fixture does not link the unrelated case-B resident to this resident.
+export function monitoringCourseCase(){return {caseKey:'monitor',id:MONITOR_DEMO_ID,sourceUserId:MONITOR_DEMO_ID,name:'李阿姨（12周模拟）',age:null,education:null,datasetType:'synthetic',demoConclusion:'MCI（轻度认知障碍）',description:'12周监测案例的同编号九项测评，作答与分类均为课程模拟。',sources:['课程模拟资料 · 监测居民关联测评'],assessments:[0,1,2].map(stage=>({...assessment('mci',stage),assessmentId:'course-monitor-202610-'+days[stage]}))};}
+export function isCourseCase(resident){return resident?.datasetType==='synthetic'&&(COURSE_CASE_OPTIONS.some(([key,,label])=>resident.id==='course-demo:'+key&&resident.demoConclusion===label)||(resident.id===MONITOR_DEMO_ID&&resident.caseKey==='monitor'&&resident.demoConclusion==='MCI（轻度认知障碍）'));}
+export function monitorCognitiveStatus(resident,{synthetic=false,residents=[]}={}){
+ const id=resident?.id;
+ const match=synthetic?(id===MONITOR_DEMO_ID?monitoringCourseCase():null):residents.find(r=>r.datasetType!=='synthetic'&&(r.id===id||r.sourceUserId===id||('elder:'+r.sourceUserId)===id));
+ const latest=match?.assessments.filter(a=>a.completedAt).slice().sort((a,b)=>a.completedAt.localeCompare(b.completedAt)).at(-1);
+ if(!match||!latest)return {status:'missing',label:'暂无认知等级',note:'尚未关联九项有效测评',synthetic:false,sourceResidentId:null,assessmentId:null,completedAt:null,validTasks:0};
+ const demo=isCourseCase(match),validTasks=TASKS.filter((_,i)=>taskScore(latest,i).score!==null).length;
+ return {status:demo?'synthetic':'unclassified',label:demo?match.demoConclusion:'等级待专业判定',note:demo?'课程模拟结果':`已接入${validTasks}/9项任务成绩`,synthetic:demo,sourceResidentId:match.id,assessmentId:latest.assessmentId,completedAt:latest.completedAt,validTasks,caseKey:demo?match.caseKey:'actual'};
+}
 export function assessmentExport(resident){const value=exportAssessmentPackage(resident);return isCourseCase(resident)?{...value,datasetType:'synthetic',demoConclusion:resident.demoConclusion,conclusionSource:'课程预设病例，不是模型预测或真实诊断',resident:{...value.resident,datasetType:'synthetic',demoConclusion:resident.demoConclusion}}:value;}
 export function assessmentCsv(resident){
  const demo=isCourseCase(resident),cell=v=>'"'+String(v??'').replaceAll('"','""').replace(/^[\s]*[=+@-]/,"'$&")+'"';
