@@ -2,7 +2,7 @@ import {ELDER_STORAGE_KEY,assessmentResidents,readAssessmentPackage,exportAssess
 import {monitoringRequested,cloudResidents} from './community-monitor-live.js';
 export const TRANSFER_KEY='qinghe-community-assessments-v1';
 export function readConnectedResidents(storage){
- if(typeof location!=='undefined'&&monitoringRequested())return cloudResidents()||{residents:[],assessmentCount:0,issues:['正在连接管理员专属共享数据，不使用本机或模拟记录替代'],live:true};
+ if(typeof location!=='undefined'&&monitoringRequested())return cloudResidents()||{residents:[],assessmentCount:0,issues:['正在连接已授权居民资料，请稍候'],live:true};
  const issues=[];let state={},saved=[];
  try{state=JSON.parse(storage.getItem(ELDER_STORAGE_KEY)||'{}');}catch{issues.push('老人端记录无法读取；请在原浏览器重新导出资料。');}
  try{const value=JSON.parse(storage.getItem(TRANSFER_KEY)||'[]');if(!Array.isArray(value))throw Error();saved=value;}catch{issues.push('本机导入记录无法读取，请重新导入原资料包。');}

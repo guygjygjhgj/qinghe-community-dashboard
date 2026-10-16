@@ -3,7 +3,7 @@ const $=s=>document.querySelector(s);
 export function initWorkspace({api,escape:e,date,openReport,selectResident,drawCharts,loadImports,showEvidence}){
   let data=null,profileData=null,profileTab='trend',profileSeq=0,refreshSeq=0,timelineLimit=50;
   const eventLabel=v=>({ui_error:'界面操作异常',activity_joined:data?.livePlatformConnected?'活动已报名（到场未采集）':'活动报名或参与',activity_cancelled:'取消活动报名',help_replied:'回应邻里求助',feedback_received:'收到互动反馈',adoption_self_report:'对方自述已采纳',positive_self_report:'对方自述正向反馈',task_started:'开始操作流程',task_closed:'结束操作流程',task_completed:'完成操作流程',message_exposed:'查看消息',assistance:'获得协助',reminder:'收到提醒',cue:'获得提示',success:'记录为完成',incomplete:'记录为未完成',cancelled:'记录为取消',unknown:'结果未知'})[v]||'其他原始记录';
-  const badge=s=>`<span class="badge ${s?'synthetic':''}">${s?'模拟资料':'导出资料'}</span>`;
+  const badge=s=>`<span class="badge ${s?'synthetic':''}">${s?'参考资料':data?.livePlatformConnected?'社区记录':'导出资料'}</span>`;
   const empty=(title,body)=>`<div class="empty"><h3>${e(title)}</h3><p>${e(body)}</p><a class="button" href="#import">接入社区资料</a></div>`;
   const delta=d=>d.delta===null?'暂不可比较':`${d.delta>0?'↑ +':d.delta<0?'↓ ':'→ '}${Number(d.delta).toFixed(1)}个百分点`;
   const directionClass=d=>d.delta===null?'unknown':d.delta>0?'up':d.delta<0?'down':'flat';

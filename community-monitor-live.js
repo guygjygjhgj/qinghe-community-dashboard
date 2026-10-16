@@ -1,5 +1,5 @@
 export const MONITOR_OWNER_ORIGIN='https://qinghe-registration-review.hebaixuan01111123.chatgpt.site';
-export const monitoringRequested=()=>new URL(location.href).searchParams.get('live')==='1';
+export const monitoringRequested=()=>new URL(location.href).searchParams.get('reference')!=='1';
 const pending=new Map();let revision=-1,timer=null,refreshing=false,stopped=false,cloud=null,lastError='',pendingPaint=false;
 export const cloudResidents=()=>monitoringRequested()?cloud:null;
 export function monitorRequest(route,body,options={}){
@@ -13,5 +13,12 @@ export async function refreshMonitoring(){
  catch(error){if(error.message!==lastError){lastError=error.message;const el=document.querySelector('#error');if(el)el.textContent=error.message;}}
  finally{refreshing=false;window.clearTimeout(timer);if(!stopped&&!document.hidden)timer=window.setTimeout(refreshMonitoring,2000);}
 }
-export function startMonitoring(){if(!monitoringRequested())return;const select=document.querySelector('#dashboard-filters select[name=dataset]');if(select)select.value='actual';const label=document.querySelector('.online-banner strong');if(label)label.textContent='实时社区监测';const u=new URL(location.href);u.searchParams.delete('case');u.searchParams.delete('report');history.replaceState(null,'',u);void refreshMonitoring();}
+export function startMonitoring(){
+ if(!monitoringRequested())return;
+ const select=document.querySelector('#dashboard-filters select[name=dataset]');if(select){select.value='actual';for(const option of select.options){if(option.value==='synthetic'){option.hidden=true;option.disabled=true;}if(option.value==='actual')option.textContent='社区共享资料';}}
+ const label=document.querySelector('.online-banner strong'),banner=document.querySelector('.online-banner span');if(label)label.textContent='社区信息监测';if(banner)banner.textContent='正在连接已授权居民资料…';
+ if(window.parent===window){const entry=document.querySelector('.header-context a');if(entry){entry.textContent='进入社区工作台';entry.href=MONITOR_OWNER_ORIGIN+'/monitor';}if(banner)banner.textContent='请登录社区工作台查看已授权居民资料';}
+ const intro=document.querySelector('[data-panel=cognition] .monitor-intro p');if(intro)intro.textContent='查看居民的单次任务表现和历次测评，与日常活动监测分别呈现。';
+ const u=new URL(location.href);u.searchParams.delete('case');u.searchParams.delete('report');history.replaceState(null,'',u);void refreshMonitoring();
+}
 if(typeof window!=='undefined'){document.addEventListener('visibilitychange',()=>{window.clearTimeout(timer);if(!document.hidden)void refreshMonitoring();});window.addEventListener('focus',()=>{if(monitoringRequested())void refreshMonitoring();});window.addEventListener('pagehide',()=>{stopped=true;window.clearTimeout(timer);for(const p of pending.values()){window.clearTimeout(p.timeout);p.reject(Error('监测页面已关闭'));}pending.clear();},{once:true});}
