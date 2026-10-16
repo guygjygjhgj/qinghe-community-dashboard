@@ -34,6 +34,7 @@ export function createDashboard({api,escape:e,date,onEvidence,onReport,onResiden
     let residents=[];try{residents=readConnectedResidents(localStorage).residents;}catch{}
     const status=monitorCognitiveStatus(report.resident,{synthetic:report.synthetic,residents}),url=new URL(location.href);
     if(status.sourceResidentId){url.hash='cognition';url.searchParams.set('elder',status.sourceResidentId);url.searchParams.set('assessment',status.assessmentId);if(status.caseKey==='actual')url.searchParams.delete('case');else url.searchParams.set('case',status.caseKey);}else url.hash='assessments';
+    const heading=root().querySelector('.snapshot-person h2');if(status.synthetic&&heading)heading.firstChild.textContent=report.resident.name.replace(/（12周(?:模拟|课程)）$/,'')+'（'+status.label.split('（')[0]+'） ';
     slot.dataset.status=status.status;
     slot.innerHTML=`<span class="cognitive-level-label">现有认知水平</span><strong class="cognitive-level-value">${e(status.label)}</strong><span class="cognitive-level-note">${e(status.note)}</span>${status.completedAt?`<time datetime="${e(status.completedAt)}">测评 ${chinaDay(status.completedAt)}</time>`:''}<a href="${e(url.href)}">${status.sourceResidentId?'查看九项评估':'接入测评'}</a>`;
   }
