@@ -18,7 +18,7 @@ export function readConnectedResidents(storage){
  return {residents,issues,assessmentCount:residents.reduce((n,r)=>n+r.assessments.length,0)};
 }
 export function importAssessmentPackage(storage,value){
- if(value?.datasetType==='synthetic'||value?.resident?.datasetType==='synthetic'||value?.resident?.sourceUserId?.startsWith('course-demo-'))throw Error('这是课程模拟资料，请通过“案例选择”查看，不会写入真实居民档案');
+ if(value?.datasetType==='synthetic'||value?.resident?.datasetType==='synthetic'||value?.resident?.sourceUserId?.startsWith('course-demo-'))throw Error('这是课程课程资料，请通过“案例选择”查看，不会写入真实居民档案');
  const incoming=readAssessmentPackage(value),all=readConnectedResidents(storage),resident=all.residents.find(r=>r.sourceUserId===incoming.sourceUserId);
  let added=0,duplicates=0;
  for(const a of incoming.assessments){const old=resident?.assessments.find(x=>x.assessmentId===a.assessmentId);if(old){if(JSON.stringify(old)!==JSON.stringify(a))throw Error('同一居民的测评编号与已有内容冲突，未导入任何记录');duplicates++;}else added++;}

@@ -16,7 +16,7 @@ export const diagnosticCriteria=[
  {label:'轻度认知障碍（MCI）',cognition:'有本人、知情人或临床人员报告的变化；至少一个认知领域有超过年龄和教育预期的客观损害。',function:'总体保留日常独立性；复杂事务可更慢、更费力或更易出错。',decision:'尚未达到痴呆程度，并排查其他解释。'},
  {label:'痴呆综合征',cognition:'相较既往水平下降；经病史与客观评估确认，认知或行为损害涉及至少两个领域（NIA-AA 2011全因痴呆框架）。',function:'认知或行为损害已明显干扰工作或日常活动。',decision:'不能由谵妄或重大精神障碍解释；病因与严重程度另行评估。'}
 ];
-export function diagnosticReadiness(r){return {status:r.synthetic?'模拟案例，未生成个体诊断':'诊断条件待补充',requirements:[['既往水平与变化病史','未提供完整临床病史'],['适龄、适教育及文化常模的客观评估','未提供可用于诊断的标准化测验结果'],['日常生活独立性','未提供完整生活功能评估'],['谵妄、精神障碍及其他病因排查','未提供临床排查记录']],diagnosis:null};}
+export function diagnosticReadiness(r){return {status:r.synthetic?'课程案例，未生成个体诊断':'诊断条件待补充',requirements:[['既往水平与变化病史','未提供完整临床病史'],['适龄、适教育及文化常模的客观评估','未提供可用于诊断的标准化测验结果'],['日常生活独立性','未提供完整生活功能评估'],['谵妄、精神障碍及其他病因排查','未提供临床排查记录']],diagnosis:null};}
 function domainValue(d,m,value,phase=''){return `<button class="number-link" data-inspect-domain="${d.key}" data-inspect-metric="${m.key}" ${phase?`data-inspect-phase="${phase}"`:''}>${value}</button>`;}
 export function methodContent(r,key,{domain}={}){
  if(key==='collection')return `<h3>数据收集的交互点</h3><p class="method-lead">沿用现有功能，按“居民—业务事件—原文—操作—版本”关联。每条数据保留发生时间、来源和未知项。</p><div class="table-wrap"><table class="method-table"><thead><tr><th>功能</th><th>触发动作</th><th>必须采集的信息</th><th>分析用途</th></tr></thead><tbody>${collectionPoints.map(row=>`<tr>${row.map(x=>`<td>${e(x)}</td>`).join('')}</tr>`).join('')}</tbody></table></div><div class="method-note">时间统一按北京时间呈现；未知时间不补齐。原文、作者和版本保留原始值。消息“已展示”记录与“已理解”结论分别核对。</div>`;
