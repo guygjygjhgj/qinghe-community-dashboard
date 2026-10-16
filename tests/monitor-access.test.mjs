@@ -36,3 +36,9 @@ test('course records use only a separate read-only API and never an owner bridge
  globalThis.fetch=async()=>({ok:false,json:async()=>({error:{message:'资料暂不可用'}})});
  await assert.rejects(monitorRequest('/api/community/monitor/state'),/资料暂不可用/);
 });
+
+test('current course-account activity requires the private owner bridge',async()=>{
+ location.href='https://guygjygjhgj.github.io/qinghe-community-dashboard/?cohort=accounts';window.parent=window;
+ let fetched=false;globalThis.fetch=async()=>{fetched=true;throw Error('must not use public course history endpoint');};
+ await assert.rejects(monitorRequest('/api/community/monitor/state'),/管理员专属/);assert.equal(fetched,false);
+});

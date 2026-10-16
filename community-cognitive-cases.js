@@ -45,11 +45,11 @@ export function monitoringCourseCase(){return {caseKey:'monitor',id:MONITOR_DEMO
 export function isCourseCase(resident){return resident?.datasetType==='synthetic'&&(COURSE_CASE_OPTIONS.some(([key,,label])=>resident.id==='course-demo:'+key&&resident.demoConclusion===label)||(resident.id===MONITOR_DEMO_ID&&resident.caseKey==='monitor'&&resident.demoConclusion==='MCI（轻度认知障碍）'));}
 export function monitorCognitiveStatus(resident,{synthetic=false,residents=[]}={}){
  const id=resident?.id;
- const named=residents.find(r=>r.id===id&&r.sourceLabel==='课程案例 · 预设资料');
+ const named=residents.find(r=>(r.id===id||r.sourceUserId===id)&&r.datasetType==='synthetic');
  const match=named||(synthetic?(id===MONITOR_DEMO_ID?monitoringCourseCase():null):residents.find(r=>r.datasetType!=='synthetic'&&(r.id===id||r.sourceUserId===id||('elder:'+r.sourceUserId)===id)));
  const latest=match?.assessments.filter(a=>a.completedAt).slice().sort((a,b)=>a.completedAt.localeCompare(b.completedAt)).at(-1);
  if(!match||!latest)return {status:'missing',label:'暂无认知等级',note:'尚未关联九项有效测评',synthetic:false,sourceResidentId:null,assessmentId:null,completedAt:null,validTasks:0};
- if(named&&latest.observation)return {status:'course',label:latest.observation.label,note:'课程案例 · 预设资料；'+latest.observation.note,synthetic:true,sourceResidentId:named.id,assessmentId:latest.assessmentId,completedAt:latest.completedAt,validTasks:latest.observation.validTasks,caseKey:'actual'};
+ if(named&&latest.observation)return {status:'course',label:latest.observation.label,note:(named.sourceLabel||'课程资料')+'；'+latest.observation.note,synthetic:true,sourceResidentId:named.id,assessmentId:latest.assessmentId,completedAt:latest.completedAt,validTasks:latest.observation.validTasks,caseKey:'actual'};
  const demo=isCourseCase(match),validTasks=TASKS.filter((_,i)=>taskScore(latest,i).score!==null).length;
  return {status:demo?'synthetic':'unclassified',label:demo?match.demoConclusion:latest.observation?.label||'等级待专业判定',note:demo?'课程资料':latest.observation?.note||`已接入${validTasks}/9项任务成绩`,synthetic:demo,sourceResidentId:match.id,assessmentId:latest.assessmentId,completedAt:latest.completedAt,validTasks,caseKey:demo?match.caseKey:'actual'};
 }
