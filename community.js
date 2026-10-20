@@ -1,4 +1,4 @@
-import {initSpatial} from './community-spatial.js?v=20261020';
+import {initSpatial} from './community-spatial.js?v=integrated-20261020';
 import {initProcessing} from './community-processing.js';
 import {onlineApi} from './community-online.js';
 import {reportNarrative} from './community-interpretation.js';
@@ -17,7 +17,7 @@ history.scrollRestoration='manual';
 const $=s=>document.querySelector(s),escape=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const state={imports:[],importId:null,residentId:null,files:[],raw:null,preview:null,phases:null,phaseDrafts:new Map(),chartCadence:'phase',chartWindow:'all',detailDomain:null,chartCache:new Map(),report:null,runId:null,poll:null,busy:false};
 const statuses={consistent:'与依据一致',conflict:'与依据不一致',unresolved:'不可判定',excluded:'已排除'};
-const titles={offline:'线下视空间评估',models:'模型与处理明细',dashboard:'认知康复看板',cognition:'认知水平评估',residents:'居民档案',import:'导入数据',reports:'认知康复看板',assessments:'认知水平测评记录'};
+const titles={models:'模型与处理明细',dashboard:'认知康复看板',cognition:'认知水平评估',residents:'居民档案',import:'导入数据',reports:'认知康复看板',assessments:'认知水平测评记录'};
 const fmt=n=>Number.isFinite(n)?n.toFixed(1):'—';
 const date=v=>v?new Date(v).toLocaleString('zh-CN',{hour12:false,timeZone:'Asia/Shanghai'}):'时间未知';
 function error(e){$('#error').textContent=e?.message||String(e);$('#error').focus();}
