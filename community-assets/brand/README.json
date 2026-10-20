@@ -1,0 +1,69 @@
+{
+  "sourceFile": "P1tSiZ8YTF9fQpZ6mr15Li",
+  "referenceFrames": [
+    "39:1713",
+    "3:6574",
+    "11:1427"
+  ],
+  "note": "Original assets exported from supplied Figma. No generated replacement characters or temporary asset URLs in the application.",
+  "tokens": {
+    "paper": "#fffef8",
+    "title": "#371503",
+    "body": "#363947",
+    "yellow": "#ffcf22",
+    "orange": "#ff6000",
+    "soft": "#fff9e9"
+  },
+  "assets": [
+    {
+      "file": "deer-plant.png",
+      "node": "39:1728",
+      "usage": "page header, right, proportional contain"
+    },
+    {
+      "file": "cloud-header.png",
+      "node": "39:1714",
+      "usage": "page header background, right bottom"
+    },
+    {
+      "file": "deer-watering.png",
+      "node": "3:6579",
+      "usage": "resident snapshot, existing mascot slot"
+    },
+    {
+      "file": "sprout.png",
+      "node": "3:6623",
+      "usage": "brand mark and domain section heading"
+    },
+    {
+      "file": "title-underline.png",
+      "node": "39:1725",
+      "usage": "page title, tabs and spatial section underline"
+    },
+    {
+      "file": "leaf-cloud.png",
+      "node": "39:1731",
+      "usage": "sidebar footer decoration"
+    },
+    {
+      "file": "icon-calendar.png",
+      "node": "11:1463",
+      "usage": "spatial assessment appointment tab"
+    },
+    {
+      "file": "icon-replies.png",
+      "node": "11:1458",
+      "usage": "youth collaboration tab"
+    },
+    {
+      "file": "icon-record.png",
+      "node": "39:1730",
+      "usage": "stage report entry"
+    },
+    {
+      "file": "icon-growth.png",
+      "node": "39:1741",
+      "usage": "resident archive heading"
+    }
+  ]
+}

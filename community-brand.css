@@ -1,0 +1,161 @@
+/* Qinghe unified mobile identity, adapted to a staff data workspace.
+   Source: Figma P1tSiZ8YTF9fQpZ6mr15Li, frames 39:1713 / 3:6574 / 11:1427. */
+:root{
+ --paper:#fffef8;--ink:#371503;--muted:#717485;--line:#f1e7c8;
+ --qh-yellow:#ffcf22;--qh-orange:#ff6000;--qh-title:#371503;
+ --qh-body:#363947;--qh-surface:#fff;--qh-soft:#fff9e9;--qh-green:#3e785a;
+ --sp-ink:#371503;--sp-line:#f1e7c8;--sp-muted:#717485;
+ --shadow:0 4px 14px rgba(238,214,96,.07)
+}
+html,body{background:var(--paper)}
+body{font-family:'Noto Sans SC','Microsoft YaHei',sans-serif;color:var(--qh-body)}
+h1,h2,h3,h4{color:var(--qh-title)}
+button,input,select,textarea{font-family:inherit}
+button,.button,input,select,textarea{border-color:#e8dfcd;border-radius:12px}
+button,.button{color:#5b321c;background:#fff;transition:background-color .15s,border-color .15s}
+button:hover,.button:hover{background:#fff6d4;border-color:#edb934}
+button.primary,.button.primary{background:linear-gradient(180deg,#ffda34,#ffb10c);border-color:#ffc323;color:#46220b;border-radius:22px;font-weight:650;box-shadow:0 2px 0 #f1af061a}
+button.primary:hover,.button.primary:hover{background:linear-gradient(180deg,#ffe15a,#ffbf27)}
+button:focus-visible,a:focus-visible{outline:3px solid #b34a0d;outline-offset:3px}
+input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid #b34a0d;outline-offset:2px}
+
+/* A calm desktop translation of the app's cloud header and original deer. */
+.page-header.qh-brand-header{position:relative;isolation:isolate;min-height:132px;padding:22px 26px;margin:0 0 13px;border:1px solid #fff0ab;border-radius:24px;background:linear-gradient(105deg,#fffef8 30%,#fff3ce 100%);overflow:hidden;align-items:center}
+.qh-brand-header:before{content:'';position:absolute;z-index:-1;inset:0;background:url('./community-assets/brand/cloud-header.png') right bottom / auto 100% no-repeat;pointer-events:none}
+.qh-brand-header>div:first-child{position:relative;padding-right:270px}
+.qh-brand-header .breadcrumb{font-size:11px;letter-spacing:0;color:#946646;margin:0 0 7px}
+.qh-brand-header h1{position:relative;display:inline-block;font-size:29px;font-weight:850;line-height:1.5;letter-spacing:.3px;margin:0;padding-bottom:10px;color:#371503}
+.qh-brand-header h1:after{content:'';position:absolute;bottom:0;left:2px;width:76px;height:9px;background:url('./community-assets/brand/title-underline.png') center/100% 100% no-repeat}
+.qh-header-subtitle{font-size:11px;color:#756b68;line-height:1.8;margin:8px 0 0}
+.qh-brand-header .header-context{position:absolute;right:158px;top:24px;max-width:180px;z-index:1}
+.qh-brand-header .header-context .button{background:#fffdf6;border-color:#ecd898;border-radius:22px;font-size:12px;min-height:36px;padding:8px 15px}
+.qh-header-ip{position:absolute;right:18px;bottom:0;display:block;width:118px;height:123px;object-fit:contain;pointer-events:none}
+body .online-banner{margin:0 0 16px;padding:0 5px 10px;border-bottom:1px solid #f0e8d5;background:transparent}
+body .online-banner strong{color:#826547}body .online-banner span{color:#717485}
+
+/* Navigation shares the app's warm selected surfaces and sprout mark. */
+.rail{background:#fffdf7;border-color:#f0e5c9;padding:27px 18px 20px}
+.brand-mark{width:44px;height:46px;background:linear-gradient(150deg,#ffe15e,#ffcb25);border:1px solid #ffd95b;border-radius:15px;box-shadow:none;display:grid;place-items:center}
+.brand-mark img{display:block;width:33px;height:33px;object-fit:contain}
+.brand-name{color:#371503;font-weight:800;letter-spacing:.5px}.brand-name small{font-weight:400;color:#846e60;letter-spacing:1px}
+.rail nav a{border-radius:14px;color:#746a65;min-height:48px;font-size:14px}
+.rail nav a>span{background:#fffaf0;color:#c56b25;border-color:#f0dfb3;border-radius:10px;box-shadow:none}
+.rail nav a[aria-current=page]{background:#fff0ab;color:#582a0b;box-shadow:inset 0 0 0 1px #ffe08b}
+.rail nav a[aria-current=page]>span{background:#ffe182;border-color:#f3cc67;color:#a44e12}
+.rail nav a[aria-current=page]:before{background:#ffba13;border-radius:5px}
+.nav-section-label{color:#9a8b78}
+.rail-bottom{position:relative;isolation:isolate;border-top-color:#f0e5c9;padding-top:18px;padding-bottom:28px;font-size:11px;color:#877e72;overflow:hidden}
+.rail-bottom:after{content:'';position:absolute;z-index:-1;width:150px;height:90px;right:-18px;bottom:-30px;background:url('./community-assets/brand/leaf-cloud.png') center/contain no-repeat;opacity:.75;pointer-events:none}
+
+/* Data surfaces stay white. Garden imagery belongs to orientation and context. */
+.resident-snapshot{background:linear-gradient(110deg,#fff9e9,#fffdf7 70%);border-color:#f4e4ad;border-radius:20px;padding:16px 20px;gap:18px}
+.resident-snapshot h2{color:#3c1708}.snapshot-avatar{background:linear-gradient(160deg,#ffe681,#ffd130);color:#774710;border-color:#ffd75e;border-radius:14px}
+.snapshot-window{border-left-color:#eddfb4}.snapshot-window>strong{color:#58402c}.snapshot-window>span,.snapshot-window small{color:#80786f}
+.snapshot-mascot{width:72px;height:72px;object-fit:contain;align-self:center;margin:0;transform:none}
+.resident-snapshot{grid-template-columns:minmax(220px,1.2fr) minmax(230px,1fr) 72px}
+.snapshot-cognitive-level .cognitive-level-value{border-radius:18px;background:#fff1bc;color:#76441a;border-color:#f3d77f}
+.badge.synthetic,.sp-badge,.course-stamp{background:#fff8de;color:#865613;border:1px solid #f2db9a;border-radius:18px}
+.monitor-summary{background:#fff7dc;border:1px solid #f5e3aa;border-left:4px solid #ffd02d;border-radius:16px;padding:14px 18px;margin:14px 0 20px}
+.monitor-summary-reading>p{font-size:19px}.monitor-summary-meta{border-left-color:#f1deb0}
+.monitor-summary h2{color:#896b4a}.monitor-summary .monitor-priority{color:#73717b;line-height:1.8}
+.dashboard-section-heading h2{display:flex;align-items:center;gap:8px;color:#371503;font-size:18px}
+.dashboard-section-heading h2:before{content:'';width:22px;height:22px;flex-shrink:0;background:url('./community-assets/brand/sprout.png') center/contain no-repeat}
+.dashboard-section-heading p{color:#7c7f8c}
+.domain-selector{gap:8px;margin-top:12px;margin-bottom:18px}
+.domain-selector .domain-choice{border:1px solid #f1e7d0;border-radius:16px;background:#fff;padding:11px 10px;box-shadow:var(--shadow)}
+.domain-selector .domain-choice[data-selected=true]{background:#fff6cd;border-color:#f5c84d;box-shadow:inset 0 3px #ffd12b}
+.domain-selector .domain-choice-label span{color:#5f4029;font-size:11px;font-weight:650;line-height:1.65}
+.domain-selector .domain-choice-score strong{font-size:20px;letter-spacing:-.3px}
+.sp-choice-note{background:#ffefb4!important;color:#80551d!important;border-top-color:#efda9b!important;font-size:10px!important;line-height:1.7}
+.chart-panel,.visual-card,.sheet,.profile-content,.resident-list,.sp-body,.sp-chart,.sp-metrics,.task-detail-fold,.task-coverage-fold{border-color:#f1e7c8;border-radius:20px;background:#fff;box-shadow:var(--shadow)}
+.chart-title-row h2,.dash-trend .chart-title-row h2{color:#3c1708;font-size:19px;line-height:1.6}
+.dash-trend .chart-title-row{gap:14px}.chart-panel .small,.visual-card .small{color:#7b7c88}
+.tab-bar button,.sp-tabs button{border-radius:16px;color:#756b68;font-size:12px}
+.tab-bar button[aria-pressed=true]{background:#fff0ab;border-color:#f2ce6c;color:#673913;box-shadow:none}
+.selected-domain-reading{background:#fff9e9;border-color:#f1e4c1;border-radius:12px;padding:13px 15px}
+.selected-domain-reading strong{color:#734518}.selected-domain-reading>p{color:#72717d;line-height:1.85}
+.selected-domain-reading details summary{color:#9c6132}
+.chart-caption,.dashboard-footnote{color:#7e7e8a;font-size:11px;line-height:1.9}
+.up{color:#3e785a}.down{color:#af5436}.flat{color:#496b8e}
+.stage-report-entry{position:relative;background:#fffdf7;border:1px solid #f1e2b5;border-radius:20px;padding:20px 22px 20px 77px;margin-top:22px}
+.stage-report-entry:before{content:'';position:absolute;width:37px;height:36px;top:22px;left:22px;background:url('./community-assets/brand/icon-record.png') center/contain no-repeat}
+.stage-report-entry h2{color:#46220b;font-size:18px}.stage-report-entry p{color:#7b7d88;line-height:1.8}
+.monitor-quality-details,.resident-overview,.sp-methods{background:#fffdf9;border-color:#f1e7c8;border-radius:16px}
+#monitor-tabs a[aria-current=page]:after{height:7px;background:url('./community-assets/brand/title-underline.png') center/100% 100% no-repeat;bottom:-3px}
+.dashboard-toolbar select{background:#fff;border-color:#e9dfc8;border-radius:18px;color:#5d3920}
+.dashboard-toolbar>button{border-radius:20px;border-color:#e8d6a5}
+
+/* Records and reports inherit the app's rounded paper cards and yellow timeline. */
+#report{border-color:#f1e7c8;border-radius:24px;background:#fff;box-shadow:var(--shadow)}
+.report-header h2{color:#371503}.report-header h2:before{background:#ffcf22}
+.summary.compact-summary,.report-context,.lexical-coverage{background:#fff9e9;border-color:#f2e4b9;border-radius:16px}
+.table-wrap{border-color:#f1e7d0;border-radius:16px}thead th{background:#fff8de;color:#75522f;border-bottom-color:#eedeb9}
+tbody th{background:#fffdf8}tbody td,tbody th{border-bottom-color:#f1ebdf}
+.interpretation-copy>strong{color:#62432b}.interpretation-copy>p,.report-context{color:#717381}
+.resident-identity{background:linear-gradient(110deg,#fff3ce,#fffdf6);border-color:#f2dfa1;border-radius:22px}
+[data-panel=residents]>.section-heading h2{display:flex;align-items:center;gap:9px}
+[data-panel=residents]>.section-heading h2:before{content:'';width:23px;height:30px;background:url('./community-assets/brand/icon-growth.png') center/contain no-repeat}
+.garden-timeline{border-left-color:#ffe092}.garden-timeline article:before{background:linear-gradient(#ffd536,#ffae08);border-color:#fff;box-shadow:0 1px 7px #cc800021}
+.profile-domain-grid strong{color:#63452c}.garden-timeline strong{color:#49210d}
+.empty{background:#fffaf0;border:1px dashed #f0d99a;border-radius:18px;color:#767584}
+.empty h3{color:#624024}.empty .primary{margin-top:8px}
+.report-methods,.quality{border-top-color:#efdfb4}
+
+/* Evidence reading keeps clear contrast; the source art never covers data. */
+dialog,.sp-dialog{background:#fffef8;border-color:#efdfb3;border-radius:22px;color:#363947}
+dialog>header,.sp-dialog>header{background:#fffef8}dialog>header h2,.sp-dialog h2{color:#371503}
+.inspection-tabs{background:#fffef8}.inspection-tabs button[aria-selected=true]{color:#99511e;border-bottom-color:#ffcd25}
+.inspection-calculation,.evidence-card,.sp-detail-scores>div{border-color:#f2e3b8;border-radius:16px}
+.quote-pair>div,.sp-detail-scores>div{background:#fff8df}.context-block h4{border-left-color:#ffce25}
+.evidence-timeline li{border-left-color:#ffe092}.evidence-timeline li:before{background:#ffd22d;border-color:#fff}
+.calculation-value strong{color:#875019}.sp-dl dt{color:#7c7d89}.sp-dl dd{color:#504537}
+
+/* Visuospatial remains a dimension of the existing dashboard. */
+.sp-integrated-heading{position:relative;border-top:0;padding-top:18px;margin-top:4px}
+.sp-integrated-heading:before{content:'';position:absolute;left:0;top:0;width:74px;height:9px;background:url('./community-assets/brand/title-underline.png') center/100% 100% no-repeat}
+.sp-integrated-heading h2{font-weight:800;color:#371503}.sp-integrated-heading p{color:#7c7d89}
+.sp-tabs{background:#fff8df;border:1px solid #f1e4bd;border-radius:18px;padding:4px}
+.sp-tabs button[aria-pressed=true]{background:#fff0ab;color:#774512;box-shadow:none}
+.sp-tabs button[data-sp-tab=sessions]:before,.sp-tabs button[data-sp-tab=team]:before{content:'';display:inline-block;width:22px;height:20px;vertical-align:-5px;margin-right:5px;background:center/contain no-repeat}
+.sp-tabs button[data-sp-tab=sessions]:before{background-image:url('./community-assets/brand/icon-calendar.png')}
+.sp-tabs button[data-sp-tab=team]:before{background-image:url('./community-assets/brand/icon-replies.png')}
+.sp-chart{background:#fffdf9}.sp-section-title h3{color:#4f2b13}.sp-section-title>div>h3:before{background:#ffd12b;border-radius:4px}
+.sp-section-title p,.sp-chart .small,.sp-chart-note,.sp-scope,.sp-metrics span{color:#797986}
+.sp-metrics strong{color:#562f15}.sp-metrics .sp-person{color:#44200b}
+.sp-chart-note strong{color:#3e785a}.sp-activity-note,.sp-role-note{background:#fff9e9;border-left-color:#ffcf22;border-radius:0 14px 14px 0}
+.sp-team article{border-color:#f0e3c3;border-radius:18px;background:#fffdf8}.sp-avatar{background:linear-gradient(160deg,#ffe785,#ffcd32);color:#764516}
+.sp-state.reviewed{background:#eaf4ec;color:#3d7255}.sp-state.pending{background:#fff0c9;color:#80520b}.sp-table thead th{background:#fff8df}
+.sp-table .sp-score{border-bottom-color:#b38b43;color:#704e28}
+.sp-message{background:#fff5d4;color:#765c3e;border-radius:14px}
+.sp-table-wrap{scrollbar-color:#dfc98a #fffaf1}
+
+@media(min-width:1500px){.qh-brand-header .qh-header-ip{right:32px}.qh-brand-header .header-context{right:180px}}
+@media(max-width:1100px){.qh-brand-header>div:first-child{padding-right:180px}.qh-brand-header .header-context{right:132px;top:18px}.qh-header-ip{width:105px;height:110px}.resident-snapshot{grid-template-columns:1fr 1fr 64px}.snapshot-mascot{width:64px;height:64px}}
+@media(max-width:900px){.resident-snapshot{grid-template-columns:1fr 1fr}.snapshot-mascot{display:none}.qh-brand-header h1{font-size:27px}}
+@media(max-width:720px){
+ .rail{padding:16px}.brand-mark{width:38px;height:40px;border-radius:13px}.brand-mark img{width:29px;height:29px}
+ .rail nav a{min-height:40px;border-radius:13px}.rail-bottom{display:none}
+ .page-header.qh-brand-header{min-height:149px;border-radius:20px;padding:17px 16px;margin-bottom:10px;align-items:flex-start}
+ .qh-brand-header>div:first-child{padding-right:80px}.qh-brand-header .breadcrumb{font-size:9px;line-height:1.8;margin-bottom:9px;max-width:155px}
+ .qh-brand-header h1{font-size:25px;line-height:1.5;letter-spacing:0;padding-bottom:7px}.qh-brand-header h1:after{width:63px;height:7px}
+ .qh-header-subtitle{font-size:10px;max-width:200px;margin-top:7px;line-height:1.7}
+ .qh-header-ip{width:85px;height:89px;right:7px;bottom:0}
+ .qh-brand-header .header-context{right:10px;top:12px;max-width:112px}.qh-brand-header .header-context .button{font-size:10px;min-height:30px;padding:6px 9px;border-radius:17px}
+ body .online-banner{margin-bottom:12px;padding-bottom:8px}
+ .resident-snapshot{grid-template-columns:1fr;padding:14px;border-radius:18px}.snapshot-avatar{width:42px;height:45px}
+ .snapshot-window{border-left:0;border-top-color:#efe3c2}.monitor-summary{padding:13px;border-radius:14px}
+ .monitor-summary-reading>p{font-size:17px}.monitor-summary-meta{border-left:0;border-top-color:#efdfb0}
+ .domain-selector .domain-choice{padding:10px 11px;border-radius:14px;flex-wrap:wrap}.domain-selector .domain-choice-label span{font-size:12px}.domain-selector .domain-choice-score strong{font-size:17px}
+ .domain-selector .sp-choice-note{flex-basis:100%;margin-top:7px;border-radius:9px!important;font-size:10px!important}
+ .chart-panel,.visual-card,.sp-body,.sp-chart{border-radius:17px}.chart-title-row h2,.dash-trend .chart-title-row h2{font-size:18px}
+ .selected-domain-reading{padding:12px}.stage-report-entry{padding:17px 16px 17px 62px;border-radius:17px}.stage-report-entry:before{left:17px;top:19px;width:30px;height:30px}.stage-report-entry h2{font-size:17px}.stage-report-entry button{width:100%}
+ .sp-integrated-heading>div:last-child{gap:7px}.sp-integrated-heading button{font-size:11px;padding:9px 12px}
+ .sp-tabs button[data-sp-tab=sessions]:before,.sp-tabs button[data-sp-tab=team]:before{width:19px;height:18px;vertical-align:-4px;margin-right:4px}
+ .sp-chart-note strong{font-size:19px}.sp-metrics .sp-person{font-size:16px}
+}
+@media(prefers-reduced-motion:reduce){button,.button{transition:none}}
+@media print{
+ .page-header.qh-brand-header,.qh-header-ip{display:none!important}
+ body,html{background:#fff!important}.chart-panel,.visual-card,.sheet,.sp-body,.sp-chart,#report{box-shadow:none}
+ .snapshot-mascot{display:none!important}.stage-report-entry:before{display:none}.stage-report-entry{padding-left:16px}
+}
