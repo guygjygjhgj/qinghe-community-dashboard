@@ -1,0 +1,42 @@
+{
+  "generatedWith": "ChatGPT Image built-in image_gen",
+  "createdAt": "2026-10-21",
+  "purpose": "Production raster assets generated from user-approved Qinghe UI previews.",
+  "assets": [
+    {
+      "file": "page-titles.png",
+      "source": "exec-b0374a6f-cc83-4e88-be69-e00f190489e2.png",
+      "kind": "transparent six-row decorative title atlas",
+      "size": [
+        1254,
+        1254
+      ],
+      "rendering": "SVG viewBox windows; raster source remains unchanged"
+    },
+    {
+      "file": "deer-garden-classroom.png",
+      "source": "exec-2ca79e57-42f2-40c4-8488-3aab2f613d14.png",
+      "kind": "transparent brand scene",
+      "size": [
+        1774,
+        887
+      ]
+    },
+    {
+      "file": "course-resident.png",
+      "source": "exec-69ac6bae-09e0-480a-bb62-4d3a3eeac431.png",
+      "kind": "synthetic course portrait",
+      "size": [
+        1254,
+        1254
+      ],
+      "restriction": "Only for explicit boolean synthetic=true. Always labelled 照片示意; no real-person photo claim."
+    }
+  ],
+  "referencePreviews": [
+    "exec-7a4151f8-1906-4719-adf7-d9047d9852d3.png",
+    "exec-2550db31-a722-4c03-b549-12c9938eff12.png",
+    "exec-b6a68a1c-f44f-4191-8def-16d9dddd1899.png"
+  ],
+  "scope": "Presentation only. Existing scoring, source data, account boundaries and missing-value handling retained."
+}

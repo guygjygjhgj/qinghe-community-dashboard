@@ -1,3 +1,4 @@
+import {residentPortrait} from './community-art.js';
 import {monitorCognitiveStatus} from './community-cognitive-cases.js';
 import {readConnectedResidents} from './community-elder-data.js';
 import {trendMeaning} from './community-inspection.js';
@@ -44,7 +45,7 @@ export function createDashboard({api,escape:e,date,onEvidence,onReport,onResiden
     const d=report.domains.find(d=>d.key===domainKey)||report.domains[0];domainKey=d.key;
     document.querySelector('#dash-analysis').innerHTML=`
       <section class="resident-snapshot" aria-label="居民基础认知信息">
-        <div class="snapshot-person"><span class="snapshot-avatar" aria-hidden="true">${e(report.resident.name.slice(0,1))}</span><div><h2>${e(report.resident.name)} ${badge(report.synthetic)} <a class="snapshot-profile-link" href="#residents">居民档案</a></h2><div id="dash-cognitive-status" class="snapshot-cognitive-level" aria-label="现有认知水平与九项测评依据"></div>${snap.age!=='未记录'||snap.education!=='未记录'?`<p class="snapshot-demographics">${snap.age!=='未记录'?'年龄 '+e(snap.age):''}${snap.education!=='未记录'?' · '+e(snap.education):''}</p>`:''}</div></div>
+        <div class="snapshot-person">${residentPortrait(report.synthetic,report.resident.name.slice(0,1),'snapshot-avatar')}<div><h2>${e(report.resident.name)} ${badge(report.synthetic)} <a class="snapshot-profile-link" href="#residents">居民档案</a></h2><div id="dash-cognitive-status" class="snapshot-cognitive-level" aria-label="现有认知水平与九项测评依据"></div>${snap.age!=='未记录'||snap.education!=='未记录'?`<p class="snapshot-demographics">${snap.age!=='未记录'?'年龄 '+e(snap.age):''}${snap.education!=='未记录'?' · '+e(snap.education):''}</p>`:''}</div></div>
         <div class="snapshot-window"><span>观察周期 · ${report.phases.length}${snap.weekly?'周':'个阶段'}</span><strong>${chinaDay(report.phases[0].startedAt)} — ${chinaDay(report.phases.at(-1).endedAt)}</strong><small>基线：${e(report.phases[0].label)}的活动记录</small></div>
         <img class="snapshot-mascot" src="./community-assets/brand/deer-watering.png" alt="" aria-hidden="true" width="72" height="72" data-figma-node="3:6579">
       </section>
