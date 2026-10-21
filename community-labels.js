@@ -7,3 +7,5 @@ export function residentLabel(value){
 export function taskResultTitle(assessment){
  return assessment?'九项任务表现':'等待测评记录';
 }
+// Keep provenance in one persistent line instead of repeating it on each card.
+export const REFERENCE_DATA_NOTICE='模拟资料 · 展示任务成绩与活动变化';

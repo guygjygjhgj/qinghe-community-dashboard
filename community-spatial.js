@@ -1,4 +1,4 @@
-import {residentLabel,taskResultTitle} from './community-labels.js';
+import {residentLabel,taskResultTitle,REFERENCE_DATA_NOTICE} from './community-labels.js';
 import {monitoringRequested} from './community-monitor-live.js';
 import {SPATIAL_SCHEMA,SPATIAL_KEY,METHODS,DEMO_RESIDENT,validateSession,spatialTrend,comparisonKey,demoSpatial,mergeSessions,spatialCsv,eligible} from './community-spatial-data.js';
 const e=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -13,7 +13,7 @@ export function initSpatial({api}){
  const synthetic=!monitoringRequested(),key=SPATIAL_KEY+(synthetic?':reference':':live');
  let requestedSpatial=location.hash==='#offline'||new URL(location.href).searchParams.get('dimension')==='visuospatial';
  if(location.hash==='#offline'){const url=new URL(location.href);url.hash='dashboard';url.searchParams.set('dimension','visuospatial');history.replaceState(null,'',url);}
- if(synthetic){const banner=document.querySelector('.online-banner span');if(banner)banner.textContent='每周观察 · 日变化 · 评分依据可追溯';}
+ if(synthetic){const banner=document.querySelector('.online-banner span');if(banner){banner.textContent=REFERENCE_DATA_NOTICE;banner.parentElement.dataset.referenceNotice='';}}
  let data,loadIssue='',residents=[],selected='',activeTab='overview',notice='',residentLoading=false;
  try{const saved=localStorage.getItem(key);data=saved?JSON.parse(saved):synthetic?demoSpatial():{schema:SPATIAL_SCHEMA,assistants:[],sessions:[]};if(data.schema!==SPATIAL_SCHEMA||!Array.isArray(data.assistants))throw Error();data.sessions=mergeSessions([],data.sessions,synthetic).sessions;}
  catch{data={schema:SPATIAL_SCHEMA,assistants:[],sessions:[]};loadIssue='本机线下记录无法读取，未覆盖原存储。请先导出原资料或联系管理员。';}

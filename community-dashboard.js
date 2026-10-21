@@ -59,7 +59,7 @@ export function createDashboard({api,escape:e,date,onEvidence,onReport,onResiden
       <section class="dashboard-visuals" aria-label="全周期覆盖与每日变化">${reportVisuals(report,{prefix:'dash-'})}</section>
       <details class="monitor-quality-details"><summary>数据质量与影响因素</summary><section class="dash-quality chart-panel"><h2>证据与数据质量</h2><p class="small">核对项构成 · 点击计数查看原因</p><div class="donut-container"><canvas id="dash-quality" role="img" aria-label="可核对、已排除和不可判定的核对项构成"></canvas></div><div id="dash-quality-legend" class="donut-legend"></div><p class="quality-reading">使用记录可在居民档案查看；这里只统计具备评分依据的事件。提示、协助和界面异常不直接记作认知错误。</p></section></details>
       <section class="stage-report-entry"><div><h2>阶段报告</h2><p>${e(residentLabel(report.resident.name))} · ${report.phases.length}个阶段的七维结果、词汇分析与事件依据</p></div><button class="primary" data-dash-report>查看本期阶段报告</button></section>
-      <div class="inspection-entry"><button data-dash-inspect="guide">数据采集与评分方法</button><span class="small">七维分别观察，不合成为脑健康总分</span></div><p class="dashboard-footnote">观察分用于认知相关表现的趋势参考；构建能力等未覆盖部分保留缺口。</p>`;
+      <div class="inspection-entry"><button data-dash-inspect="guide">数据采集与评分方法</button></div><p class="dashboard-footnote">点击图表或分数查看对应事件、记录时间与评分明细。</p>`;
     const visuals=root().querySelector('.dashboard-visuals .visual-grid'),comparison=visuals.querySelector('.visual-card');
     comparison.classList.add('baseline-comparison');comparison.querySelector('h3').textContent='七维基线与当前表现';
     root().querySelector('.dash-current-profile').append(comparison);
