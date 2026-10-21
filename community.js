@@ -1,7 +1,6 @@
 import {residentLabel,taskResultTitle} from './community-labels.js';
 import {initArt,setPageTitle,residentPortrait} from './community-art.js';
 import {initSpatial} from './community-spatial.js?v=integrated-20261020';
-import {initProcessing} from './community-processing.js';
 import {onlineApi} from './community-online.js';
 import {reportNarrative} from './community-interpretation.js';
 import {methodsPanel,selectMethodTab} from './community-methods.js';
@@ -20,7 +19,7 @@ initArt();
 const $=s=>document.querySelector(s),escape=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const state={imports:[],importId:null,residentId:null,files:[],raw:null,preview:null,phases:null,phaseDrafts:new Map(),chartCadence:'phase',chartWindow:'all',detailDomain:null,chartCache:new Map(),report:null,runId:null,poll:null,busy:false};
 const statuses={consistent:'与依据一致',conflict:'与依据不一致',unresolved:'不可判定',excluded:'已排除'};
-const titles={models:'模型与处理明细',dashboard:'认知康复看板',cognition:'认知水平评估',residents:'居民档案',import:'导入数据',reports:'认知康复看板',assessments:'认知水平测评记录'};
+const titles={dashboard:'认知康复看板',cognition:'认知水平评估',residents:'居民档案',import:'导入数据',reports:'认知康复看板',assessments:'认知水平测评记录'};
 const fmt=n=>Number.isFinite(n)?n.toFixed(1):'—';
 const date=v=>v?new Date(v).toLocaleString('zh-CN',{hour12:false,timeZone:'Asia/Shanghai'}):'时间未知';
 function error(e){$('#error').textContent=e?.message||String(e);$('#error').focus();}
@@ -99,7 +98,6 @@ async function init(){try{show(location.hash.slice(1));await loadImports();let i
 document.addEventListener('click',event=>{if(event.target.closest('#profile-analyze'))$('#analysis-panel').open=true;});
 workspace=initWorkspace({api,escape,date,openReport,selectResident,drawCharts,loadImports,showEvidence:(report,...args)=>{if(state.report?.id!==report.id){state.report=report;renderReport();}openEvidence(...args);}});
 initElderConnection();
-initProcessing();
 initSpatial({api});
 document.addEventListener('qinghe-monitor-updated',async()=>{try{const scroll=window.scrollY;await loadImports();await workspace.refresh();if(state.view==='reports')await loadReports();if(state.view==='residents')await workspace.refreshProfile?.();window.scrollTo(0,scroll);}catch(e){error(e);}});
 startMonitoring();
