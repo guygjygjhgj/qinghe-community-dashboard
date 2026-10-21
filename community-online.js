@@ -2,7 +2,7 @@ import {monitoringRequested,monitorRequest,courseRequested} from './community-mo
 const base=new URL('./',import.meta.url),cache=new Map();
 async function load(file){if(!cache.has(file))cache.set(file,fetch(new URL(file,base)).then(async r=>{if(!r.ok)throw Error('展示资料未能载入，请刷新重试');return r.json();}).catch(err=>{cache.delete(file);throw err;}));return cache.get(file);}
 const meta=()=>load('data/workspace.json');
-const readOnly=()=>{throw Error('线上展示版不提交或分析新资料。当前可浏览12周课程报告、原始证据及已完成的词汇分析。');};
+const readOnly=()=>{throw Error('线上展示版不提交或分析新资料。当前可浏览12周监测报告、原始证据及已完成的词汇分析。');};
 export async function onlineApi(route,body){
  const u=new URL(route,base),p=u.pathname;if(monitoringRequested())return monitorRequest(p+u.search,body);const m=await meta(),id=m.defaultReport;
  if(body!==undefined){if(p==='/api/community/demo/weekly')return {reportId:id,reused:true};return readOnly();}

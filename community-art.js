@@ -26,7 +26,7 @@ export function setPageTitle(view, title) {
 }
 export function residentPortrait(synthetic, initial, className = '') {
   if (synthetic !== true) return `<span class="${escape(className)} qh-initial" aria-hidden="true">${escape(initial)}</span>`;
-  return `<span class="${escape(className)} qh-portrait" role="img" aria-label="课程人物照片示意"><img src="${escape(new URL('../exact/portrait-residents.png',artBase).href)}" width="1254" height="1254" alt="" decoding="async"><span>照片示意</span></span>`;
+  return `<span class="${escape(className)} qh-portrait" role="img" aria-label="居民头像"><img src="${escape(new URL('../exact/portrait-residents.png',artBase).href)}" width="1254" height="1254" alt="" decoding="async"></span>`;
 }
 const navPaths = {
   dashboard:'<path d="m3 10 9-7 9 7M5 9v11h5v-6h4v6h5V9"/>',
