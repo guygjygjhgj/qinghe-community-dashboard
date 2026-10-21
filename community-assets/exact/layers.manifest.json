@@ -1,0 +1,532 @@
+{
+  "purpose": "Exact extraction from previously generated and user-selected community UI mockups. Not a new design.",
+  "referenceCoordinateSystem": "native screenshot pixels; scaled_bbox_750 is supplied for independent overlay verification only; production preserves the original desktop reference aspect ratio",
+  "sources": {
+    "residents": {
+      "file": "exec-b80fedf8-b94f-46d8-ae21-ed1f97590b1a.png",
+      "width": 1435,
+      "height": 1096
+    },
+    "profile": {
+      "file": "exec-8640eca5-b8f3-4c56-85f6-db1f7934bdd2.png",
+      "width": 1195,
+      "height": 1316
+    },
+    "dashboard": {
+      "file": "exec-e725b0db-caeb-41d4-bbb7-cd5d0beac91e.png",
+      "width": 999,
+      "height": 1575
+    },
+    "cognition": {
+      "file": "exec-1903e58e-215b-4fd2-b8fc-da3f3c313de5.png",
+      "width": 1122,
+      "height": 1402
+    },
+    "assessments": {
+      "file": "exec-e7102f3c-1a36-409d-b829-2a81b036a810.png",
+      "width": 878,
+      "height": 1792
+    },
+    "models": {
+      "file": "exec-b8747dd5-d71c-4e44-aac0-dbf01deb2034.png",
+      "width": 1469,
+      "height": 1071
+    },
+    "import": {
+      "file": "exec-ed38d8dd-eaa9-4fe4-9da2-5a9d19e269c6.png",
+      "width": 1435,
+      "height": 1096
+    },
+    "reports": {
+      "file": "exec-7a4151f8-1906-4719-adf7-d9047d9852d3.png",
+      "width": 1038,
+      "height": 1515
+    }
+  },
+  "layers": [
+    {
+      "id": "hero-residents",
+      "source": "exec-b80fedf8-b94f-46d8-ae21-ed1f97590b1a.png",
+      "source_bbox": {
+        "x": 255,
+        "y": 22,
+        "width": 1152,
+        "height": 196
+      },
+      "scaled_bbox_750": {
+        "x": 133.2753,
+        "y": 11.4983,
+        "width": 602.0906,
+        "height": 102.439
+      },
+      "asset": "hero-residents.png",
+      "asset_pixel_width": 1152,
+      "asset_pixel_height": 196,
+      "asset_scale_factor": 1,
+      "transparent_required": false,
+      "notes": "Original rectangular photo/banner/control surface retained exactly, including its background. Native-resolution crop; no upscaling or synthesized detail."
+    },
+    {
+      "id": "hero-profile",
+      "source": "exec-8640eca5-b8f3-4c56-85f6-db1f7934bdd2.png",
+      "source_bbox": {
+        "x": 245,
+        "y": 20,
+        "width": 927,
+        "height": 145
+      },
+      "scaled_bbox_750": {
+        "x": 153.7657,
+        "y": 12.5523,
+        "width": 581.7992,
+        "height": 91.0042
+      },
+      "asset": "hero-profile.png",
+      "asset_pixel_width": 927,
+      "asset_pixel_height": 145,
+      "asset_scale_factor": 1,
+      "transparent_required": false,
+      "notes": "Original rectangular photo/banner/control surface retained exactly, including its background. Native-resolution crop; no upscaling or synthesized detail."
+    },
+    {
+      "id": "hero-dashboard",
+      "source": "exec-e725b0db-caeb-41d4-bbb7-cd5d0beac91e.png",
+      "source_bbox": {
+        "x": 177,
+        "y": 0,
+        "width": 822,
+        "height": 155
+      },
+      "scaled_bbox_750": {
+        "x": 132.8829,
+        "y": 0.0,
+        "width": 617.1171,
+        "height": 116.3664
+      },
+      "asset": "hero-dashboard.png",
+      "asset_pixel_width": 822,
+      "asset_pixel_height": 155,
+      "asset_scale_factor": 1,
+      "transparent_required": false,
+      "notes": "Original rectangular photo/banner/control surface retained exactly, including its background. Native-resolution crop; no upscaling or synthesized detail."
+    },
+    {
+      "id": "hero-cognition",
+      "source": "exec-1903e58e-215b-4fd2-b8fc-da3f3c313de5.png",
+      "source_bbox": {
+        "x": 215,
+        "y": 15,
+        "width": 889,
+        "height": 139
+      },
+      "scaled_bbox_750": {
+        "x": 143.7166,
+        "y": 10.0267,
+        "width": 594.2513,
+        "height": 92.9144
+      },
+      "asset": "hero-cognition.png",
+      "asset_pixel_width": 889,
+      "asset_pixel_height": 139,
+      "asset_scale_factor": 1,
+      "transparent_required": false,
+      "notes": "Original rectangular photo/banner/control surface retained exactly, including its background. Native-resolution crop; no upscaling or synthesized detail."
+    },
+    {
+      "id": "hero-assessments",
+      "source": "exec-e7102f3c-1a36-409d-b829-2a81b036a810.png",
+      "source_bbox": {
+        "x": 176,
+        "y": 12,
+        "width": 684,
+        "height": 113
+      },
+      "scaled_bbox_750": {
+        "x": 150.3417,
+        "y": 10.2506,
+        "width": 584.2825,
+        "height": 96.5262
+      },
+      "asset": "hero-assessments.png",
+      "asset_pixel_width": 684,
+      "asset_pixel_height": 113,
+      "asset_scale_factor": 1,
+      "transparent_required": false,
+      "notes": "Original rectangular photo/banner/control surface retained exactly, including its background. Native-resolution crop; no upscaling or synthesized detail."
+    },
+    {
+      "id": "hero-models",
+      "source": "exec-b8747dd5-d71c-4e44-aac0-dbf01deb2034.png",
+      "source_bbox": {
+        "x": 304,
+        "y": 27,
+        "width": 1128,
+        "height": 269
+      },
+      "scaled_bbox_750": {
+        "x": 155.2076,
+        "y": 13.7849,
+        "width": 575.902,
+        "height": 137.3383
+      },
+      "asset": "hero-models.png",
+      "asset_pixel_width": 1128,
+      "asset_pixel_height": 269,
+      "asset_scale_factor": 1,
+      "transparent_required": false,
+      "notes": "Original rectangular photo/banner/control surface retained exactly, including its background. Native-resolution crop; no upscaling or synthesized detail."
+    },
+    {
+      "id": "hero-import",
+      "source": "exec-ed38d8dd-eaa9-4fe4-9da2-5a9d19e269c6.png",
+      "source_bbox": {
+        "x": 269,
+        "y": 26,
+        "width": 1139,
+        "height": 239
+      },
+      "scaled_bbox_750": {
+        "x": 140.5923,
+        "y": 13.5889,
+        "width": 595.2962,
+        "height": 124.9129
+      },
+      "asset": "hero-import.png",
+      "asset_pixel_width": 1139,
+      "asset_pixel_height": 239,
+      "asset_scale_factor": 1,
+      "transparent_required": false,
+      "notes": "Original rectangular photo/banner/control surface retained exactly, including its background. Native-resolution crop; no upscaling or synthesized detail."
+    },
+    {
+      "id": "hero-reports",
+      "source": "exec-7a4151f8-1906-4719-adf7-d9047d9852d3.png",
+      "source_bbox": {
+        "x": 178,
+        "y": 0,
+        "width": 860,
+        "height": 198
+      },
+      "scaled_bbox_750": {
+        "x": 128.6127,
+        "y": 0.0,
+        "width": 621.3873,
+        "height": 143.0636
+      },
+      "asset": "hero-reports.png",
+      "asset_pixel_width": 860,
+      "asset_pixel_height": 198,
+      "asset_scale_factor": 1,
+      "transparent_required": false,
+      "notes": "Original rectangular photo/banner/control surface retained exactly, including its background. Native-resolution crop; no upscaling or synthesized detail."
+    },
+    {
+      "id": "portrait-residents",
+      "source": "exec-b80fedf8-b94f-46d8-ae21-ed1f97590b1a.png",
+      "source_bbox": {
+        "x": 279,
+        "y": 646,
+        "width": 115,
+        "height": 116
+      },
+      "scaled_bbox_750": {
+        "x": 145.8188,
+        "y": 337.6307,
+        "width": 60.1045,
+        "height": 60.6272
+      },
+      "asset": "portrait-residents.png",
+      "asset_pixel_width": 115,
+      "asset_pixel_height": 116,
+      "asset_scale_factor": 1,
+      "transparent_required": false,
+      "notes": "Original rectangular photo/banner/control surface retained exactly, including its background. Native-resolution crop; no upscaling or synthesized detail."
+    },
+    {
+      "id": "portrait-profile",
+      "source": "exec-8640eca5-b8f3-4c56-85f6-db1f7934bdd2.png",
+      "source_bbox": {
+        "x": 268,
+        "y": 604,
+        "width": 105,
+        "height": 100
+      },
+      "scaled_bbox_750": {
+        "x": 168.2008,
+        "y": 379.0795,
+        "width": 65.8996,
+        "height": 62.7615
+      },
+      "asset": "portrait-profile.png",
+      "asset_pixel_width": 105,
+      "asset_pixel_height": 100,
+      "asset_scale_factor": 1,
+      "transparent_required": false,
+      "notes": "Original rectangular photo/banner/control surface retained exactly, including its background. Native-resolution crop; no upscaling or synthesized detail."
+    },
+    {
+      "id": "portrait-dashboard",
+      "source": "exec-e725b0db-caeb-41d4-bbb7-cd5d0beac91e.png",
+      "source_bbox": {
+        "x": 198,
+        "y": 277,
+        "width": 93,
+        "height": 94
+      },
+      "scaled_bbox_750": {
+        "x": 148.6486,
+        "y": 207.958,
+        "width": 69.8198,
+        "height": 70.5706
+      },
+      "asset": "portrait-dashboard.png",
+      "asset_pixel_width": 93,
+      "asset_pixel_height": 94,
+      "asset_scale_factor": 1,
+      "transparent_required": false,
+      "notes": "Original rectangular photo/banner/control surface retained exactly, including its background. Native-resolution crop; no upscaling or synthesized detail."
+    },
+    {
+      "id": "portrait-cognition",
+      "source": "exec-1903e58e-215b-4fd2-b8fc-da3f3c313de5.png",
+      "source_bbox": {
+        "x": 237,
+        "y": 357,
+        "width": 117,
+        "height": 117
+      },
+      "scaled_bbox_750": {
+        "x": 158.4225,
+        "y": 238.6364,
+        "width": 78.2086,
+        "height": 78.2086
+      },
+      "asset": "portrait-cognition.png",
+      "asset_pixel_width": 117,
+      "asset_pixel_height": 117,
+      "asset_scale_factor": 1,
+      "transparent_required": false,
+      "notes": "Original rectangular photo/banner/control surface retained exactly, including its background. Native-resolution crop; no upscaling or synthesized detail."
+    },
+    {
+      "id": "portrait-assessments",
+      "source": "exec-e7102f3c-1a36-409d-b829-2a81b036a810.png",
+      "source_bbox": {
+        "x": 193,
+        "y": 287,
+        "width": 96,
+        "height": 98
+      },
+      "scaled_bbox_750": {
+        "x": 164.8633,
+        "y": 245.1595,
+        "width": 82.0046,
+        "height": 83.713
+      },
+      "asset": "portrait-assessments.png",
+      "asset_pixel_width": 96,
+      "asset_pixel_height": 98,
+      "asset_scale_factor": 1,
+      "transparent_required": false,
+      "notes": "Original rectangular photo/banner/control surface retained exactly, including its background. Native-resolution crop; no upscaling or synthesized detail."
+    },
+    {
+      "id": "portrait-reports",
+      "source": "exec-7a4151f8-1906-4719-adf7-d9047d9852d3.png",
+      "source_bbox": {
+        "x": 686,
+        "y": 368,
+        "width": 135,
+        "height": 111
+      },
+      "scaled_bbox_750": {
+        "x": 495.6647,
+        "y": 265.896,
+        "width": 97.5434,
+        "height": 80.2023
+      },
+      "asset": "portrait-reports.png",
+      "asset_pixel_width": 135,
+      "asset_pixel_height": 111,
+      "asset_scale_factor": 1,
+      "transparent_required": false,
+      "notes": "Original rectangular photo/banner/control surface retained exactly, including its background. Native-resolution crop; no upscaling or synthesized detail."
+    },
+    {
+      "id": "report-cover",
+      "source": "exec-7a4151f8-1906-4719-adf7-d9047d9852d3.png",
+      "source_bbox": {
+        "x": 202,
+        "y": 346,
+        "width": 813,
+        "height": 135
+      },
+      "scaled_bbox_750": {
+        "x": 145.9538,
+        "y": 250.0,
+        "width": 587.4277,
+        "height": 97.5434
+      },
+      "asset": "report-cover.png",
+      "asset_pixel_width": 813,
+      "asset_pixel_height": 135,
+      "asset_scale_factor": 1,
+      "transparent_required": false,
+      "notes": "Original rectangular photo/banner/control surface retained exactly, including its background. Native-resolution crop; no upscaling or synthesized detail."
+    },
+    {
+      "id": "model-empty-scene",
+      "source": "exec-b8747dd5-d71c-4e44-aac0-dbf01deb2034.png",
+      "source_bbox": {
+        "x": 984,
+        "y": 410,
+        "width": 440,
+        "height": 303
+      },
+      "scaled_bbox_750": {
+        "x": 502.3826,
+        "y": 209.3261,
+        "width": 224.6426,
+        "height": 154.6971
+      },
+      "asset": "model-empty-scene.png",
+      "asset_pixel_width": 440,
+      "asset_pixel_height": 303,
+      "asset_scale_factor": 1,
+      "transparent_required": false,
+      "notes": "Original rectangular photo/banner/control surface retained exactly, including its background. Native-resolution crop; no upscaling or synthesized detail."
+    },
+    {
+      "id": "brand-sprout",
+      "source": "exec-b80fedf8-b94f-46d8-ae21-ed1f97590b1a.png",
+      "source_bbox": {
+        "x": 26,
+        "y": 30,
+        "width": 46,
+        "height": 47
+      },
+      "scaled_bbox_750": {
+        "x": 13.5889,
+        "y": 15.6794,
+        "width": 24.0418,
+        "height": 24.5645
+      },
+      "asset": "brand-sprout.png",
+      "asset_pixel_width": 46,
+      "asset_pixel_height": 47,
+      "asset_scale_factor": 1,
+      "transparent_required": false,
+      "notes": "Original rectangular photo/banner/control surface retained exactly, including its background. Native-resolution crop; no upscaling or synthesized detail."
+    },
+    {
+      "id": "nav-dashboard",
+      "source": "exec-b80fedf8-b94f-46d8-ae21-ed1f97590b1a.png",
+      "source_bbox": {
+        "x": 26,
+        "y": 138,
+        "width": 33,
+        "height": 33
+      },
+      "scaled_bbox_750": {
+        "x": 13.5889,
+        "y": 72.1254,
+        "width": 17.2474,
+        "height": 17.2474
+      },
+      "asset": "nav-dashboard.png",
+      "asset_pixel_width": 33,
+      "asset_pixel_height": 33,
+      "asset_scale_factor": 1,
+      "transparent_required": false,
+      "notes": "Original rectangular photo/banner/control surface retained exactly, including its background. Native-resolution crop; no upscaling or synthesized detail."
+    },
+    {
+      "id": "nav-residents",
+      "source": "exec-b80fedf8-b94f-46d8-ae21-ed1f97590b1a.png",
+      "source_bbox": {
+        "x": 26,
+        "y": 197,
+        "width": 33,
+        "height": 32
+      },
+      "scaled_bbox_750": {
+        "x": 13.5889,
+        "y": 102.9617,
+        "width": 17.2474,
+        "height": 16.7247
+      },
+      "asset": "nav-residents.png",
+      "asset_pixel_width": 33,
+      "asset_pixel_height": 32,
+      "asset_scale_factor": 1,
+      "transparent_required": false,
+      "notes": "Original rectangular photo/banner/control surface retained exactly, including its background. Native-resolution crop; no upscaling or synthesized detail."
+    },
+    {
+      "id": "nav-cognition",
+      "source": "exec-b80fedf8-b94f-46d8-ae21-ed1f97590b1a.png",
+      "source_bbox": {
+        "x": 26,
+        "y": 315,
+        "width": 33,
+        "height": 33
+      },
+      "scaled_bbox_750": {
+        "x": 13.5889,
+        "y": 164.6341,
+        "width": 17.2474,
+        "height": 17.2474
+      },
+      "asset": "nav-cognition.png",
+      "asset_pixel_width": 33,
+      "asset_pixel_height": 33,
+      "asset_scale_factor": 1,
+      "transparent_required": false,
+      "notes": "Original rectangular photo/banner/control surface retained exactly, including its background. Native-resolution crop; no upscaling or synthesized detail."
+    },
+    {
+      "id": "nav-assessments",
+      "source": "exec-b80fedf8-b94f-46d8-ae21-ed1f97590b1a.png",
+      "source_bbox": {
+        "x": 26,
+        "y": 375,
+        "width": 33,
+        "height": 32
+      },
+      "scaled_bbox_750": {
+        "x": 13.5889,
+        "y": 195.993,
+        "width": 17.2474,
+        "height": 16.7247
+      },
+      "asset": "nav-assessments.png",
+      "asset_pixel_width": 33,
+      "asset_pixel_height": 32,
+      "asset_scale_factor": 1,
+      "transparent_required": false,
+      "notes": "Original rectangular photo/banner/control surface retained exactly, including its background. Native-resolution crop; no upscaling or synthesized detail."
+    },
+    {
+      "id": "nav-models",
+      "source": "exec-b80fedf8-b94f-46d8-ae21-ed1f97590b1a.png",
+      "source_bbox": {
+        "x": 26,
+        "y": 434,
+        "width": 33,
+        "height": 33
+      },
+      "scaled_bbox_750": {
+        "x": 13.5889,
+        "y": 226.8293,
+        "width": 17.2474,
+        "height": 17.2474
+      },
+      "asset": "nav-models.png",
+      "asset_pixel_width": 33,
+      "asset_pixel_height": 33,
+      "asset_scale_factor": 1,
+      "transparent_required": false,
+      "notes": "Original rectangular photo/banner/control surface retained exactly, including its background. Native-resolution crop; no upscaling or synthesized detail."
+    }
+  ]
+}

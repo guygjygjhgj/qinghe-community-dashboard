@@ -1,3 +1,4 @@
+import {initReference,applyReferenceScale} from './community-fidelity.js';
 // Presentation only. The atlas and vignette were generated with ChatGPT Image
 // from the user's approved Qinghe mockups; no scores or identity matching here.
 const artBase = new URL('./community-assets/generated/', import.meta.url);
@@ -17,6 +18,7 @@ export function titleArtMarkup(title) {
 }
 export function setPageTitle(view, title) {
   document.body.dataset.qhView = view;
+  applyReferenceScale(view);
   const el = document.getElementById('page-title');
   if (!el) return;
   el.classList.toggle('qh-art-title', Boolean(titleViews[title]));
@@ -24,7 +26,7 @@ export function setPageTitle(view, title) {
 }
 export function residentPortrait(synthetic, initial, className = '') {
   if (synthetic !== true) return `<span class="${escape(className)} qh-initial" aria-hidden="true">${escape(initial)}</span>`;
-  return `<span class="${escape(className)} qh-portrait" role="img" aria-label="课程人物照片示意"><img src="${escape(new URL('course-resident.png',artBase).href)}" width="1254" height="1254" alt="" decoding="async"><span>照片示意</span></span>`;
+  return `<span class="${escape(className)} qh-portrait" role="img" aria-label="课程人物照片示意"><img src="${escape(new URL('../exact/portrait-residents.png',artBase).href)}" width="1254" height="1254" alt="" decoding="async"><span>照片示意</span></span>`;
 }
 const navPaths = {
   dashboard:'<path d="m3 10 9-7 9 7M5 9v11h5v-6h4v6h5V9"/>',
@@ -34,7 +36,8 @@ const navPaths = {
   models:'<rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 7h8M8 12h8M8 17h5"/>'
 };
 export function initArt() {
-  for (const link of document.querySelectorAll('.rail [data-view]')) {
+  initReference();
+  for (const link of []) {
     const target = link.querySelector('span'), path = navPaths[link.dataset.view];
     if (target && path) target.innerHTML = `<svg viewBox="0 0 24 24" width="23" height="23" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${path}</svg>`;
   }
