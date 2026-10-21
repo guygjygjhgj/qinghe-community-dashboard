@@ -24,7 +24,7 @@ export function applyReferenceScale(view=document.body.dataset.qhView||'dashboar
   for(const [name,value] of Object.entries(ref))styles.setProperty('--ref-'+name,String(value));
   const header=document.querySelector('.qh-brand-header');
   if(header){
-    const hero=key==='dashboard'?new URL('./community-assets/generated/hero-dashboard-hd-v2.png',import.meta.url):key==='assessments'?new URL('./community-assets/generated/hero-assessments-hd-v2.png',import.meta.url):new URL('hero-'+key+'.png',exactBase);
+    const hero=new URL('./community-assets/generated/hero-assessments-hd-v2.png',import.meta.url);
     header.style.backgroundImage=`url("${hero.href}")`;
     header.dataset.reference=key;
   }

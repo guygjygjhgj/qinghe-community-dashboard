@@ -1,0 +1,69 @@
+/* Shared shell and typography. Page-reference scaling never changes these sizes. */
+:root{--qh-sidebar:224px;--qh-font-page:36px;--qh-font-section:22px;--qh-font-card:18px;--qh-font-body:15px;--qh-font-control:14px;--qh-font-caption:12px;--qh-font-number:28px}
+body{font-family:'Noto Sans SC','Microsoft YaHei',sans-serif;font-size:var(--qh-font-body);line-height:1.65}
+body .rail{position:fixed;inset:0 auto 0 0;width:var(--qh-sidebar);height:100dvh;max-height:100dvh;overflow-y:auto;display:flex;flex-direction:column;padding:28px 16px 20px;background:#fffefa;border-right:1px solid #f2e8d6}
+body .rail .brand{padding:0 4px;gap:10px;margin:0 0 34px;flex-shrink:0}
+body .rail .brand-mark{width:42px;height:43px;flex-shrink:0}
+body .rail .brand-mark img{width:100%;height:100%;object-fit:contain}
+body .rail .brand-name{font-size:24px;line-height:1.5;font-weight:800;letter-spacing:0}
+body .rail .brand-name small{font-size:11px;line-height:1.6;letter-spacing:0;white-space:nowrap}
+body .rail nav a[data-view]{display:flex;align-items:center;justify-content:flex-start;height:52px;min-height:52px;margin:6px 0;padding:10px 12px;gap:12px;border-radius:14px;font-size:15px;font-weight:600;line-height:1.4;color:#746a65;box-sizing:border-box;white-space:nowrap}
+body .rail nav a[data-view]>span{display:block;width:28px;height:28px;flex:0 0 28px}
+body .rail nav a[data-view]>span>img{width:100%;height:100%;object-fit:contain}
+body .rail nav a[aria-current=page]{color:#582a0b}
+body .rail nav a[aria-current=page]:before{width:4px;height:26px;top:13px;left:0;border-radius:4px}
+body .rail .nav-section-label{font-size:12px;font-weight:400;line-height:1.5;margin:26px 12px 10px}
+body .rail .rail-bottom{position:static;inset:auto;margin-top:auto;padding:22px 4px 0;font-size:12px;line-height:1.6;flex-shrink:0}
+body .rail .rail-bottom p,body .rail .rail-bottom .small{font-size:12px;margin:0}
+body main{margin-left:var(--qh-sidebar);padding:24px 28px 30px}
+/* The same native title, mascot, copy and help control on every route. */
+body[data-qh-reference] .page-header.qh-brand-header{height:180px;min-height:180px;width:100%;margin:0 0 16px;border-radius:24px;background-color:#fffbee;background-size:auto 145%;background-position:right 60%;background-repeat:no-repeat}
+body[data-qh-reference] .qh-brand-header>div:first-child{position:absolute!important;left:24px;top:25px;width:60%!important;height:auto!important;overflow:visible;clip-path:none;padding:0!important;white-space:normal;z-index:1}
+body[data-qh-reference] .qh-brand-header .breadcrumb{font-size:12px;line-height:1.5;color:#797d85;margin:0 0 5px}
+body[data-qh-reference] .qh-brand-header #page-title{font-family:inherit;font-size:var(--qh-font-page);line-height:1.35;font-weight:900;letter-spacing:-.03em;color:#371503;margin:0;padding:0;min-height:0;position:relative;display:table;max-width:100%}
+body[data-qh-reference] .qh-brand-header #page-title:after{content:'';display:block!important;width:48%;height:6px;background:#ffcc00;border-radius:0 0 70% 30%;transform:rotate(-2deg);position:static;margin:2px 0 9px}
+body[data-qh-reference] .qh-brand-header .qh-header-subtitle{font-size:15px;line-height:1.5;color:#667183;margin:0;max-width:100%}
+body[data-qh-reference] .qh-brand-header .header-context{right:18px;top:15px;width:auto;height:auto;z-index:2}
+body[data-qh-reference] .qh-brand-header .header-context .button{display:block;width:auto;height:auto;min-height:34px;padding:6px 16px;font-size:13px;line-height:1.5;border:1px solid #fff0c5;background:#fffdf5!important;color:#59311b!important;box-shadow:none;border-radius:999px}
+/* Semantic type roles shared by cards, reports, records and drawers. */
+body h2,body .section-heading h2,body .monitor-intro h2,body .dashboard-section-heading h2,body .chart-title-row h2,body .dash-trend .chart-title-row h2,body #elder-roster>.section-heading h2,body .task-monitor-head h2,body .stage-report-entry h2{font-size:var(--qh-font-section);line-height:1.45}
+body h3,body .visual-card h3,body .task-monitor-card h3,body .chart-panel h3,body .compact-summary h3{font-size:var(--qh-font-card);line-height:1.5}
+body h4{font-size:16px;line-height:1.5}
+body .resident-row h3,body[data-qh-reference=profile] .resident-row h3{font-size:20px}
+body .resident-identity h2,body .resident-snapshot h2,body .course-result h2,body .elder-assessment .course-result h2,body .report-titleline.qh-cover-with-photo h2{font-size:24px;line-height:1.5}
+body p,body .monitor-intro p,body .section-heading p,body .profile-content>p:first-child,body .compact-summary p,body .course-result p,body .resident-row>div:nth-child(2),body[data-qh-reference=profile] .resident-row>div:nth-child(2),body .selected-domain-reading>p,body .quality p{font-size:var(--qh-font-body)}
+body .small,body small,body .resident-row .small,body .resident-row small,body[data-qh-reference=profile] .resident-row .small,body[data-qh-reference=profile] .resident-row small,body .course-result small,body .chart-panel .small,body .visual-card .small,body .chart-caption,body .task-monitor-note,body .task-monitor-limit,body .course-context-note,body .task-monitor-card header p,body .task-monitor-card footer,body .snapshot-window small,body .snapshot-window>span,body .dashboard-section-heading p,body .course-case-bar p,body .course-case-bar label{font-size:var(--qh-font-caption);line-height:1.6}
+body button,body .button,body .tab-bar button,body .cadence-tabs button,body .course-result-actions button,body .report-actions button,body .report-actions .button,body .resident-row button,body[data-qh-reference=profile] .resident-row button,body .dashboard-toolbar>button{font-family:inherit;font-size:var(--qh-font-control);line-height:1.5}
+body input,body select,body textarea,body .dashboard-toolbar select,body .task-monitor-selectors select,body .course-case-bar select{font-family:inherit;font-size:var(--qh-font-control)}
+body label,body .dashboard-toolbar label,body .filter-bar label,body .task-monitor-selectors label{font-size:var(--qh-font-control)}
+body th,body td,body .elder-task-table th,body .elder-task-table td,body .method-table th,body .method-table td,body .resident-overview th,body .resident-overview td{font-size:var(--qh-font-control);line-height:1.6}
+body .number-link{font-size:inherit;line-height:inherit}
+body .task-monitor-value button,body .elder-keyline strong,body .profile-domain-grid span,body .metric-strip strong,body .stat-strip strong{font-size:var(--qh-font-number);font-variant-numeric:tabular-nums}
+body .domain-selector .domain-choice-label span,body .profile-domain-grid strong,body .elder-domain-grid strong{font-size:14px;line-height:1.5}
+body .domain-selector .domain-choice-score strong,body .monitor-summary-meta .number-link{font-size:24px;font-variant-numeric:tabular-nums}
+body .domain-choice-score small,body .monitor-summary-meta span,body .task-monitor-card .task-monitor-change{font-size:12px}
+body #monitor-tabs a{font-size:16px}body .level-entry{font-size:13px}
+body .online-banner,body .online-banner strong,body .online-banner span{font-size:12px;line-height:1.6}
+body .monitor-summary h2{font-size:14px}body .monitor-summary-reading>p{font-size:20px}body .monitor-summary .monitor-priority{font-size:12px}
+@media(max-width:1100px) and (min-width:721px){body main{padding-left:22px;padding-right:22px}body .course-result{grid-template-columns:96px minmax(0,1fr);gap:20px}body .course-result .qh-portrait{width:96px;height:96px}body .course-result-actions{grid-column:1/-1;display:flex;flex-wrap:wrap;width:auto}body .resident-row{grid-template-columns:minmax(0,1fr) auto}body .resident-row>div:nth-child(2){grid-column:1;border:0;padding-left:0}body .resident-row>button{grid-column:2;grid-row:1/3}}
+@media(max-width:720px){
+ :root{--qh-font-page:24px;--qh-font-section:20px;--qh-font-card:17px;--qh-font-body:14px;--qh-font-number:26px}
+ body .rail{position:relative;inset:auto;width:100%;height:auto;max-height:none;overflow:visible;padding:16px 14px;border-right:0;border-bottom:1px solid #f2e8d6}
+ body .rail .brand{margin:0 0 14px;padding:0;gap:10px}body .rail .brand-name{font-size:22px}body .rail .brand-name small{font-size:11px}body .rail .brand-mark{width:38px;height:39px}
+ body .rail nav:not(.management-nav){display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:5px}
+ body .rail nav a[data-view]{height:44px;min-height:44px;margin:0;padding:8px;gap:8px;font-size:13px;grid-column:auto;border-radius:12px}
+ body .rail nav a[data-view]>span{width:24px;height:24px;flex-basis:24px}body .rail nav a[aria-current=page]:before{top:10px;height:24px}
+ body .rail .nav-section-label,body .rail .rail-bottom{display:none}
+ body main{margin-left:0;padding:16px 14px 24px}
+ body[data-qh-reference] .page-header.qh-brand-header{height:148px!important;min-height:148px;aspect-ratio:auto;margin:0 0 12px!important;border-radius:18px;background-size:auto 100%;background-position:right bottom}
+ body[data-qh-reference] .qh-brand-header>div:first-child{left:14px;top:21px;width:65%!important}
+ body[data-qh-reference] .qh-brand-header .breadcrumb{font-size:10px;margin-bottom:6px}
+ body[data-qh-reference] .qh-brand-header #page-title{max-width:8em;font-size:var(--qh-font-page);line-height:1.35}
+ body[data-qh-reference] .qh-brand-header #page-title:after{height:4px;margin:3px 0 7px}
+ body[data-qh-reference] .qh-brand-header .qh-header-subtitle{font-size:11px;max-width:16em}
+ body[data-qh-reference] .qh-brand-header .header-context{right:9px;top:9px}body[data-qh-reference] .qh-brand-header .header-context .button{font-size:11px;min-height:28px;padding:4px 9px}
+ body .resident-identity h2,body .resident-snapshot h2,body .course-result h2,body .elder-assessment .course-result h2,body .report-titleline.qh-cover-with-photo h2{font-size:22px}
+ body .course-result{grid-template-columns:68px minmax(0,1fr);gap:14px}body .course-result .qh-portrait{width:68px;height:68px}body .course-result-actions{grid-column:1/-1;display:flex;width:auto;flex-wrap:wrap}
+ body #monitor-tabs a{font-size:15px}body .domain-selector .domain-choice-label span{min-height:0}
+}
+@media print{body .rail,body[data-qh-reference] .page-header.qh-brand-header{display:none!important}body main{margin:0;padding:0}body{font-size:11px}}
