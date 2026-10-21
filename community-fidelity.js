@@ -3,7 +3,8 @@
 export const referenceViews = Object.freeze({
   residents:{width:1435,rail:223,left:32,right:28,top:22,hero:196,nav:16,body:18,section:30,small:16},
   profile:{width:1198,rail:218,left:27,right:28,top:20,hero:145,nav:14,body:15,section:24,small:13},
-  dashboard:{width:999,rail:159,left:18,right:14,top:0,hero:155,nav:12,body:13,section:18,small:11},
+  // The source crop includes the next row at its bottom. Keep a clean viewport.
+  dashboard:{width:999,rail:159,left:18,right:14,top:0,hero:145,nav:12,body:13,section:18,small:11},
   cognition:{width:1122,rail:190,left:25,right:18,top:15,hero:139,nav:14,body:13,section:22,small:12},
   assessments:{width:878,rail:155,left:21,right:18,top:12,hero:113,nav:11,body:11,section:17,small:10},
   models:{width:1469,rail:274,left:30,right:37,top:27,hero:269,nav:18,body:20,section:36,small:17},
