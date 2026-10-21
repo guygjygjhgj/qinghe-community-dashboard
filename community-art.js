@@ -21,8 +21,8 @@ export function setPageTitle(view, title) {
   applyReferenceScale(view);
   const el = document.getElementById('page-title');
   if (!el) return;
-  el.classList.toggle('qh-art-title', Boolean(titleViews[title]));
-  el.innerHTML = titleArtMarkup(title);
+  el.classList.toggle('qh-art-title', view!=='assessments'&&Boolean(titleViews[title]));
+  if(view==='assessments')el.textContent=title;else el.innerHTML = titleArtMarkup(title);
 }
 export function residentPortrait(synthetic, initial, className = '') {
   if (synthetic !== true) return `<span class="${escape(className)} qh-initial" aria-hidden="true">${escape(initial)}</span>`;
