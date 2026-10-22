@@ -27,7 +27,7 @@ export function initElderConnection(){
   if(initialSelectionPending){
    initialSelectionPending=false;
    // Reference pages may show an independent example; account-backed pages never do.
-   const reference=new URL(location.href).searchParams.get('reference')==='1';
+   const reference=!live;
    const hasScores=data.residents.some(r=>r.assessments.some(a=>TASKS.some((_,i)=>taskScore(a,i).score!==null)));
    if(!live&&reference&&requestedCase===null&&!hasScores)caseId='monitor';
   }

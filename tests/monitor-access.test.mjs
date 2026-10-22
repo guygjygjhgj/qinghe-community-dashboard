@@ -8,23 +8,31 @@ globalThis.history={replaceState(_state,_title,url){location.href=String(url);}}
 const {monitoringRequested,monitorRequest,startMonitoring,MONITOR_OWNER_ORIGIN}=await import('../community-monitor-live.js');
 const {readConnectedResidents}=await import('../community-elder-data.js');
 
-test('normal and old report URLs always request authenticated shared records and ignore browser fixtures',()=>{
+test('direct and old report URLs open the original dashboard without a login bridge',()=>{
  for(const query of ['','?case=mci&report=old','?live=0']){
   location.href='https://guygjygjhgj.github.io/qinghe-community-dashboard/'+query;
-  assert.equal(monitoringRequested(),true);
-  const result=readConnectedResidents({getItem(){throw Error('Local records must not replace shared records');}});
-  assert.equal(result.live,true);assert.deepEqual(result.residents,[]);
+  assert.equal(monitoringRequested(),false);
+  const result=readConnectedResidents({getItem(){return null;}});
+  assert.notEqual(result.live,true);assert.deepEqual(result.residents,[]);
  }
 });
-test('a direct public page cannot retrieve resident records and links to the protected workbench',async()=>{
+test('a direct public page preserves the report and never redirects to login',async()=>{
  location.href='https://guygjygjhgj.github.io/qinghe-community-dashboard/?report=old&case=mci';window.parent=window;
  const entry={},banner={};nodes.set('.header-context a',entry);nodes.set('.online-banner span',banner);
- startMonitoring();assert.equal(entry.href,MONITOR_OWNER_ORIGIN+'/monitor');assert.match(banner.textContent,/登录社区工作台/);
- assert.equal(new URL(location.href).searchParams.has('report'),false);assert.equal(new URL(location.href).searchParams.has('case'),false);
+ startMonitoring();assert.equal(entry.href,undefined);assert.equal(banner.textContent,undefined);
+ assert.equal(new URL(location.href).searchParams.get('report'),'old');assert.equal(new URL(location.href).searchParams.get('case'),'mci');
  await assert.rejects(monitorRequest('/api/community/monitor/state'),/管理员专属/);
 });
-test('reference material is available only through an explicit separate mode',()=>{
+test('explicit reference links remain compatible',()=>{
  location.href='https://guygjygjhgj.github.io/qinghe-community-dashboard/?reference=1';assert.equal(monitoringRequested(),false);
+});
+
+test('embedded monitoring still uses protected shared records and ignores local fixtures',()=>{
+ location.href='https://guygjygjhgj.github.io/qinghe-community-dashboard/';window.parent={};
+ assert.equal(monitoringRequested(),true);
+ const result=readConnectedResidents({getItem(){throw Error('Local records must not replace shared records');}});
+ assert.equal(result.live,true);assert.deepEqual(result.residents,[]);
+ window.parent=window;
 });
 
 test('course records use only a separate read-only API and never an owner bridge',async()=>{

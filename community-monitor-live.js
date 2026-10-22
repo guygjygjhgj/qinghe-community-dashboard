@@ -1,7 +1,9 @@
 export const courseAccountsRequested=()=>new URL(location.href).searchParams.get('cohort')==='accounts';
 export const courseRequested=()=>new URL(location.href).searchParams.get('cohort')==='course';
 export const MONITOR_OWNER_ORIGIN='https://qinghe-registration-review.hebaixuan01111123.chatgpt.site';
-export const monitoringRequested=()=>new URL(location.href).searchParams.get('reference')!=='1';
+// Direct visits open the existing published dashboard. The private monitor
+// bridge is used only inside its host or for an explicitly selected cohort.
+export const monitoringRequested=()=>new URL(location.href).searchParams.get('reference')!=='1'&&(window.parent!==window||courseRequested()||courseAccountsRequested());
 const pending=new Map();let revision=-1,timer=null,refreshing=false,stopped=false,cloud=null,lastError='',pendingPaint=false;
 export const cloudResidents=()=>monitoringRequested()?cloud:null;
 export function monitorRequest(route,body,options={}){
