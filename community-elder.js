@@ -26,10 +26,9 @@ export function initElderConnection(){
   try{data=readConnectedResidents(localStorage);}catch(err){data={residents:[],assessmentCount:0,issues:[err.message]};}
   if(initialSelectionPending){
    initialSelectionPending=false;
-   // Reference pages may show an independent example; account-backed pages never do.
-   const reference=!live;
-   const hasScores=data.residents.some(r=>r.assessments.some(a=>TASKS.some((_,i)=>taskScore(a,i).score!==null)));
-   if(!live&&reference&&requestedCase===null&&!hasScores)caseId='monitor';
+   // All visitors start with the same published record. Imported local records
+   // remain selectable without changing anyone else's default view.
+   if(!live&&requestedCase===null)caseId='monitor';
   }
   document.dispatchEvent(new window.CustomEvent('qinghe-assessment-updated'));
   if(!data.residents.some(r=>r.id===residentId))residentId=data.residents[0]?.id||null;
